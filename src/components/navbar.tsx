@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "~/components/ui/button";
+import { Button } from "~/components/ui/buttons";
 import { Container } from "~/components/ui/containers";
 import { Link } from "react-scroll/modules";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";

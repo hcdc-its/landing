@@ -1,4 +1,4 @@
-import { About } from "~/components/about";
+import { About } from "~/components/about-us";
 import { Hero } from "~/components/hero";
 import { Navbar } from "~/components/navbar";
 import { Connect } from "~/components/connect";

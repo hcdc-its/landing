@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Questrial } from "next/font/google";
 import LenisScrollProvider from "~/providers/lenis-provider";
-import { Scroll } from "~/components/ui/Scroll";
 import { ThemeProvider } from "~/components/theme-provider";
 
 const inter = Inter({
@@ -43,7 +42,6 @@ export default function RootLayout({
         >
           <LenisScrollProvider>
             {children}
-            <Scroll />
           </LenisScrollProvider>
         </ThemeProvider>
       </body>
