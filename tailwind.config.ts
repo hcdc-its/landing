@@ -100,6 +100,8 @@ const config: Config = {
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+        questrial: ["var(--font-questrial)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
     },
   },
