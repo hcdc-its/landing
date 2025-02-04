@@ -1,162 +1,172 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "~/components/ui/Button";
-import { Container } from "~/components/ui/Container";
+import { Button } from "~/components/ui/button";
+import { Container } from "~/components/ui/containers";
 import { Link } from "react-scroll/modules";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const menuItems = [
+    { label: "about", to: "about" },
+    { label: "highlights", to: "highlights" },
+    { label: "contact", to: "contact" },
+  ];
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        when: "afterChildren",
+      },
+    },
+    open: {
+      opacity: 1,
+      height: "100vh",
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, y: 10 },
+    open: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-white/00 backdrop-blur-lg py-6 px-6">
-      <Container className="md:flex flex-row justify-between md:items-center">
-        <div className="flex md:justify-between justify-end items-center">
-          <h4
-            className="font-montserrat font-semibold text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl md:block hidden cursor-pointer"
-            onClick={() => router.push("/")}
-          >
-            HCDC ITS
-          </h4>
-          <div className="md:hidden">
-            <button
-              className="text-gray-500 hover:text-gray-700 focus:outline-none"
-              onClick={toggleMenu}
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="backdrop-blur-md border-b border-white/10">
+        <Container variant={"fullMobileBreakpointPadded"}>
+          <nav className="flex justify-between items-center h-16 px-4 md:px-0">
+            {/* Logo/Brand */}
+            <h4
+              className="font-questrial font-medium text-2xl cursor-pointer"
+              onClick={() => router.push("/")}
             >
-              <HiOutlineMenuAlt3 className="w-7 h-7" />
-            </button>
-          </div>
-        </div>
+              HCDC ITS
+            </h4>
 
-        <div className="flex md:flex-row md:items-center lg:space-y-0 space-x-12 md:space-x-8 xl:space-x-16">
-          <ul
-            className={`font-montserrat lg:text-lg md:text-[15px] md:flex lg:space-x-12 md:space-x-6 ${
-              isOpen ? "hidden" : "hidden sm:block"
-            }`}
-          >
-            <li>
-              <Link
-                to="about"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                about
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="publications"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                featured
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="officers"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                team
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="contributors"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                developers
-              </Link>
-            </li>
-          </ul>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              <ul className="flex items-center gap-8">
+                {menuItems.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      smooth={true}
+                      duration={500}
+                      spy={true}
+                      offset={-70}
+                      className="font-inter text-sm text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Button variant="default" size="sm">
+                Browse Merch
+              </Button>
+            </div>
 
-          <Button
-            className={`bg-white font-montserrat font-semibold text-sm md:text-base transition-opacity duration-300 ease-in-out hover:opacity-70 hidden md:block`}
-          >
-            Browse Merch
-          </Button>
-        </div>
+            {/* Mobile Menu Button */}
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-neutral-300 hover:text-white transition-colors relative z-50"
+              whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isOpen ? "close" : "open"}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isOpen ? (
+                    <HiX className="w-6 h-6" />
+                  ) : (
+                    <HiOutlineMenuAlt3 className="w-6 h-6" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
+          </nav>
 
-        {/* BEGIN: Mobile Menu */}
-        <div
-          className={`lg:hidden ${
-            isOpen ? "block" : "hidden"
-          } flex flex-col items-end py-4 px-2 text-right space-y-4`}
-        >
-          <ul className="font-montserrat flex flex-col space-y-4">
-            <li>
-              <Link
-                to="about"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={menuVariants}
+                className="fixed inset-0 z-40 bg-black/80 backdrop-blur-lg"
               >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="publications"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                Featured
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="contributors"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                Contributors
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="merch"
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                className="transition-opacity duration-300 ease-in-out hover:opacity-70 cursor-pointer"
-              >
-                browse merch
-              </Link>
-            </li>
-          </ul>
-        </div>
-        {/* END: Mobile Menu */}
-      </Container>
+                <motion.div 
+                  className="flex flex-col items-center justify-center min-h-screen px-6"
+                >
+                  <div className="w-full max-w-md space-y-8">
+                    {menuItems.map((item, index) => (
+                      <motion.div 
+                        key={item.to} 
+                        custom={index}
+                        variants={itemVariants}
+                        className="w-full text-center"
+                      >
+                        <Link
+                          to={item.to}
+                          smooth={true}
+                          duration={500}
+                          spy={true}
+                          offset={-70}
+                          className="font-questrial text-2xl text-neutral-300 hover:text-white transition-colors cursor-pointer block w-full py-2"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                    <motion.div 
+                      variants={itemVariants}
+                      custom={menuItems.length}
+                      className="w-full"
+                    >
+                      <Button 
+                        variant="default" 
+                        size="lg"
+                        onClick={() => setIsOpen(false)}
+                        className="bg-white text-black hover:bg-neutral-200 w-full"
+                      >
+                        Browse Merch
+                      </Button>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Container>
+      </div>
     </div>
   );
 };
+

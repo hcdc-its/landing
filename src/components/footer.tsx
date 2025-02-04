@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Container } from "~/components/ui/Container";
+import { Container } from "~/components/ui/containers";
 
 import itslogo from "~/assets/images/New-ITS-Footer.png";
 
@@ -7,27 +7,29 @@ export const Footer = () => {
   return (
     <>
       <section className="mt-56 sm:mt-0">
-        <div className="w-[100%] h-[1.5px] bg-[#3a3a3a]">
+        <div className="w-[100%] h-[1px] bg-[#2b2b2b]">
           <div className="px-2" />
         </div>
-        <Container className="container sm:flex sm:px-6 xl:px-0">
+        <Container variant={"fullMobileBreakpointPadded"}>
           <footer>
             <div className="sm:flex sm:flex-wrap sm:space-x-36">
               <div className="sm:mx-[10px] my-[8%] align-left space-y-4">
-                <h1 className="font-montserrat font-semibold text-lg sm:mb-4 text-white content-start">
+                <h1 className="font-questrial font-medium text-lg sm:mb-4 text-white content-start">
                   Resources
                 </h1>
-                <div className="font-montserrat text-md items-start text-[#afaeaedc] inline-block mb-[5px]">
+                <div className="font-inter text-md items-start text-[#afaeaedc] inline-block mb-[5px]">
                   <p className="mb-3">Help</p>
                   <p className="mb-3">Privacy</p>
                   <p className="mb-3">FAQ</p>
+
                 </div>
               </div>
               <div className="sm:mx-[10px] my-[8%] align-left space-y-4">
-                <h1 className="font-montserrat font-semibold text-lg sm:mb-4 text-white content-start">
+                <h1 className="font-questrial font-medium text-lg sm:mb-4 text-white content-start">
                   Socials
                 </h1>
-                <div className="font-montserrat text-md items-start text-[#afaeaedc] inline-block mb-[5px] whitespace-nowrap">
+
+                <div className="font-inter text-md items-start text-[#afaeaedc] inline-block mb-[5px] whitespace-nowrap">
                   <a
                     href="https://www.facebook.com/hcdcits"
                     target="_blank"
@@ -48,10 +50,11 @@ export const Footer = () => {
                 </div>
               </div>
               <div className="sm:mx-[10px] my-[8%] align-left space-y-4">
-                <h1 className="font-montserrat font-semibold text-lg sm:mb-4 text-white content-start">
+                <h1 className="font-questrial font-medium text-lg sm:mb-4 text-white content-start">
                   Open Source
                 </h1>
-                <div className="font-montserrat text-md items-start text-[#afaeaedc] inline-block mb-[5px] whitespace-nowrap">
+
+                <div className="font-questrial text-md items-start text-[#afaeaedc] inline-block mb-[5px] whitespace-nowrap">
                   <p className="mb-3">Contribute</p>
                   <a
                     href="https://github.com/kaizenics/hcdc-its/issues"
@@ -87,9 +90,9 @@ export const Footer = () => {
       </section>
 
       <section>
-        <Container className="container flex px-6 xl:px-0">
-          <div className="font-montserrat text-md items-start text-[#dfdfdfdc] inline-block mb-20 whitespace-nowrap">
-            <p>HCDC ITS © 2024 All Rights Reserved</p>
+        <Container variant={"fullMobileBreakpointPadded"}>
+          <div className="font-questrial text-md items-start text-[#dfdfdfdc] inline-block mb-20">
+            <p>HCDC ITS © {new Date().getFullYear()} All Rights Reserved / Designed and Developed by <a href="https://github.com/kaizenics" target="_blank" rel="noopener noreferrer">Niko Soriano</a></p>
           </div>
         </Container>
       </section>
