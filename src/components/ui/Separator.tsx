@@ -1,4 +1,4 @@
-import { Container } from "./Container";
+import { Container } from "./containers";
 
 export const Separator = () => {
 

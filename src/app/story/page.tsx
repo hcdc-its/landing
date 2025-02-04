@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "~/components/ui/Container";
+import { Container } from "~/components/ui/containers";
 import Image from "next/image";
 
 import ourStory from "~/assets/images/our-story.png";

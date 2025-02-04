@@ -1,23 +1,22 @@
-
-
-import { About } from "~/components/About";
-import { Separator } from "~/components/ui/Separator";
-import { Publications } from "~/components/Publications";
+import { About } from "~/components/about";
 import { Hero } from "~/components/hero";
-import { Partners } from "~/components/partners";
+import { Navbar } from "~/components/navbar";
+import { Connect } from "~/components/connect";
+import { Footer } from "~/components/footer";
+import { Highlights } from "~/components/highlights";
 import { FAQ } from "~/components/faq";
-import "./index.css"
 
 export default function Home() {
   return (
     <>
       <main>
+        <Navbar />
         <Hero />
-        <Partners />
-        <About id="about" />
-        <Separator />
-        <Publications id="publications" />
+        <About />
+        <Highlights />
         <FAQ />
+        <Connect />
+        <Footer />
       </main>
     </>
   );
