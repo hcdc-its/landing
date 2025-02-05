@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "~/components/ui/containers";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
@@ -77,14 +77,26 @@ const images = [
 
 export const Highlights = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const autoPlayDelay = 3000; // 3 seconds
+  const [isMobile, setIsMobile] = useState(false);
 
-  const handleNext = useCallback(() => {
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
-  }, []);
+  };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -92,31 +104,9 @@ export const Highlights = () => {
     );
   };
 
-  // Autoplay functionality
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
-    if (isAutoPlaying) {
-      intervalId = setInterval(() => {
-        handleNext();
-      }, autoPlayDelay);
-    }
-
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    };
-  }, [isAutoPlaying, handleNext]);
-
-  // Pause on hover
-  const handleMouseEnter = () => setIsAutoPlaying(false);
-  const handleMouseLeave = () => setIsAutoPlaying(true);
-
   const getVisibleImages = () => {
     const visibleImages = [];
-    // Show only 1 image on mobile, 3 on larger screens
-    const imagesToShow = window.innerWidth < 768 ? 1 : 3;
+    const imagesToShow = isMobile ? 1 : 3;
     for (let i = 0; i < imagesToShow; i++) {
       const index = (currentIndex + i) % images.length;
       visibleImages.push(images[index]);
@@ -133,11 +123,7 @@ export const Highlights = () => {
           </h3>
         </div>
 
-        <div
-          className="relative overflow-hidden"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="relative overflow-hidden">
           <div className="flex gap-4">
             <AnimatePresence initial={false} mode="wait">
               {getVisibleImages().map((image, index) => (
@@ -148,9 +134,9 @@ export const Highlights = () => {
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className={`relative ${
-                    window.innerWidth < 768
-                      ? "w-full aspect-[4/3]"
-                      : "w-1/3 aspect-[4/3]"
+                    isMobile 
+                      ? 'w-full aspect-[4/3]' 
+                      : 'w-1/3 aspect-[4/3]'
                   }`}
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden">
@@ -159,6 +145,7 @@ export const Highlights = () => {
                       alt={image.alt}
                       fill
                       className="object-cover"
+                      sizes={isMobile ? "100vw" : "33vw"}
                       priority
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
@@ -170,18 +157,18 @@ export const Highlights = () => {
 
           <button
             onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-full backdrop-blur-sm transition-colors z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 md:p-3 rounded-full backdrop-blur-sm transition-colors z-10"
             aria-label="Previous image"
           >
-            <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+            <FaChevronLeft className="w-6 h-6 md:w-5 md:h-5" />
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-full backdrop-blur-sm transition-colors z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 md:p-3 rounded-full backdrop-blur-sm transition-colors z-10"
             aria-label="Next image"
           >
-            <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+            <FaChevronRight className="w-6 h-6 md:w-5 md:h-5" />
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -189,7 +176,7 @@ export const Highlights = () => {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                className={`w-3 h-3 md:w-2 md:h-2 rounded-full transition-colors ${
                   index === currentIndex ? "bg-white" : "bg-white/50"
                 }`}
                 aria-label={`Go to image ${index + 1}`}

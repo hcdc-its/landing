@@ -56,7 +56,7 @@ export const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       <div className="backdrop-blur-md border-b border-white/10">
         <Container variant={"fullMobileBreakpointPadded"}>
-          <nav className="flex justify-between items-center h-16 px-4 md:px-0">
+          <nav className="flex justify-between items-center h-16">
             {/* Logo/Brand */}
             <h4
               className="font-questrial font-medium text-2xl cursor-pointer"
