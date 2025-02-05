@@ -13,10 +13,11 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { label: "about", to: "about" },
-    { label: "highlights", to: "highlights" },
-    { label: "contact", to: "contact" },
+    { label: "About", to: "about" },
+    { label: "Highlights", to: "highlights" },
+    { label: "Contact", to: "contact" },
   ];
+
 
   const menuVariants = {
     closed: {

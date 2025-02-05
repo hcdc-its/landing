@@ -9,17 +9,17 @@ const socialLinks = [
   {
     icon: <FaGithub className="w-6 h-6" />,
     label: "GitHub",
-    href: "https://github.com/HCDC-ITSO",
+    href: "https://github.com/hcdc-its",
   },
   {
     icon: <FaFacebook className="w-6 h-6" />,
     label: "Facebook",
-    href: "https://facebook.com/HCDCITSO",
+    href: "https://facebook.com/hcdcits",
   },
   {
     icon: <FaLinkedin className="w-6 h-6" />,
     label: "LinkedIn",
-    href: "https://linkedin.com/company/hcdc-itso",
+    href: "https://linkedin.com/company/hcdc-its",
   },
 ];
 
@@ -34,7 +34,6 @@ export const Connect = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log(formData);
   };
 

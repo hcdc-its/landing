@@ -1,38 +1,90 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "~/components/ui/containers";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Image from "next/image";
-import image1 from "~/assets/images/officers.jpg";
-import image2 from "~/assets/images/psits-pub.png";
-import image3 from "~/assets/images/front-end-poster.png";
-import image4 from "~/assets/images/its-mem.png";
+
+import techtalk1 from "~/assets/highlights/techtalk-1.jpg";
+import techtalk2 from "~/assets/highlights/techtalk-2.jpg";
+import techtalk3 from "~/assets/highlights/techtalk-3.jpg";
+import techtalk4 from "~/assets/highlights/techtalk-4.jpg";
+import techtalk5 from "~/assets/highlights/techtalk-5.jpg";
+import techtalk6 from "~/assets/highlights/techtalk-6.jpg";
+import techtalk7 from "~/assets/highlights/techtalk-7.jpg";
+import techtalk8 from "~/assets/highlights/techtalk-8.jpg";
+import techtalk9 from "~/assets/highlights/techtalk-9.jpg";
+import techtalk10 from "~/assets/highlights/techtalk-10.jpg";
+import techtalk11 from "~/assets/highlights/techtalk-11.jpg";
 
 const images = [
   {
-    src: image1,
-    alt: "ITSO Officers",
+    src: techtalk1,
+    alt: "Tech Talk 1",
   },
+
   {
-    src: image2,
-    alt: "PSITS Publication",
+    src: techtalk2,
+    alt: "Tech Talk 2",
   },
+
   {
-    src: image3,
-    alt: "AWS Community Day",
+    src: techtalk3,
+    alt: "Tech Talk 3",
+  },
+
+  {
+    src: techtalk4,
+    alt: "Tech Talk 4",
+  },
+
+  {
+    src: techtalk5,
+    alt: "Tech Talk 5",
+  },
+
+  {
+    src: techtalk6,
+    alt: "Tech Talk 6",
+  },
+
+  {
+    src: techtalk7,
+    alt: "Tech Talk 7",
+  },
+
+  {
+    src: techtalk8,
+    alt: "Tech Talk 8",
+  },
+
+  {
+    src: techtalk9,
+    alt: "Tech Talk 9",
+  },
+
+  {
+    src: techtalk10,
+    alt: "Tech Talk 10",
+  },
+
+  {
+    src: techtalk11,
+    alt: "Tech Talk 11",
   },
 ];
 
 export const Highlights = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayDelay = 3000; // 3 seconds
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
-  };
+  }, []);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -40,9 +92,32 @@ export const Highlights = () => {
     );
   };
 
+  // Autoplay functionality
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (isAutoPlaying) {
+      intervalId = setInterval(() => {
+        handleNext();
+      }, autoPlayDelay);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isAutoPlaying, handleNext]);
+
+  // Pause on hover
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
+
   const getVisibleImages = () => {
     const visibleImages = [];
-    for (let i = 0; i < 3; i++) {
+    // Show only 1 image on mobile, 3 on larger screens
+    const imagesToShow = window.innerWidth < 768 ? 1 : 3;
+    for (let i = 0; i < imagesToShow; i++) {
       const index = (currentIndex + i) % images.length;
       visibleImages.push(images[index]);
     }
@@ -58,7 +133,11 @@ export const Highlights = () => {
           </h3>
         </div>
 
-        <div className="relative overflow-hidden">
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div className="flex gap-4">
             <AnimatePresence initial={false} mode="wait">
               {getVisibleImages().map((image, index) => (
@@ -68,7 +147,11 @@ export const Highlights = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="relative w-1/3 aspect-[4/3]"
+                  className={`relative ${
+                    window.innerWidth < 768
+                      ? "w-full aspect-[4/3]"
+                      : "w-1/3 aspect-[4/3]"
+                  }`}
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden">
                     <Image
@@ -87,18 +170,18 @@ export const Highlights = () => {
 
           <button
             onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full backdrop-blur-sm transition-colors z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-full backdrop-blur-sm transition-colors z-10"
             aria-label="Previous image"
           >
-            <FaChevronLeft className="w-6 h-6" />
+            <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full backdrop-blur-sm transition-colors z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-full backdrop-blur-sm transition-colors z-10"
             aria-label="Next image"
           >
-            <FaChevronRight className="w-6 h-6" />
+            <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -106,7 +189,7 @@ export const Highlights = () => {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${
                   index === currentIndex ? "bg-white" : "bg-white/50"
                 }`}
                 aria-label={`Go to image ${index + 1}`}

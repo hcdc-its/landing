@@ -1,19 +1,21 @@
 import React from "react";
 import { Container } from "~/components/ui/containers";
 import Image from "next/image";
-
+import { Footer } from "~/components/footer";
 import ourStory from "~/assets/images/our-story.png";
 
 export default function Story() {
   return (
-    <Container>
+    <>
+    <Container variant={"fullMobileBreakpointPadded"}>
       <div className="flex justify-center items-center">
         <Image src={ourStory} alt="" />
+
       </div>
       <div className="my-16 xl:mx-0 mx-5">
         <div className="space-y-6">
-          <p className="font-montserrat font-bold md md:text-5xl text-3xl">Since 2008</p>
-          <p className="font-montserrat font-regular md:text-2xl text-lg text-balance">
+          <p className="font-questrial font-semibold md md:text-5xl text-3xl">Since 2008</p>
+          <p className="font-inter font-regular md:text-2xl text-lg text-balance text-muted-foreground">
             The Holy Cross of Davao College Information Technology Society,
             established in 2008, has been a beacon of growth and excellence
             within the institution. Since its founding, the society has embarked
@@ -22,7 +24,7 @@ export default function Story() {
             is dedicated to cultivating a vibrant and supportive community where
             aspiring IT professionals can thrive.
           </p>
-          <p className="font-montserrat font-regular md:text-2xl text-lg text-balance">
+          <p className="font-inter font-regular md:text-2xl text-lg text-balance text-muted-foreground">
             Over the years, the society has played a pivotal role in providing
             its members with invaluable opportunities to develop and hone their
             technical skills. Through workshops, seminars, and hands-on
@@ -33,10 +35,10 @@ export default function Story() {
           </p>
         </div>
         <div className="mt-28 space-y-6">
-          <p className="font-montserrat font-bold md md:text-5xl text-3xl text-right">
+          <p className="font-questrial font-semibold md md:text-5xl text-3xl text-right">
             ITS Officers
           </p>
-          <p className="font-montserrat font-regular md:text-2xl text-lg text-balance text-right">
+          <p className="font-inter font-regular md:text-2xl text-lg text-balance text-right text-muted-foreground">
             The HCDC Information Technology Society is led by a committed team
             of officers who work together to organize events, facilitate
             workshops, and support members. Their leadership fosters a vibrant,
@@ -48,10 +50,11 @@ export default function Story() {
         </div>
 
         <div className="mt-28 space-y-6">
-          <p className="font-montserrat font-bold md md:text-5xl text-3xl">
+          <p className="font-questrial font-semibold md md:text-5xl text-3xl">
             ITS Creatives
           </p>
-          <p className="font-montserrat font-regular md:text-2xl text-lg text-balance">
+          <p className="font-inter font-regular md:text-2xl text-lg text-balance text-muted-foreground">
+
             The HCDC Information Technology Society Creatives are a talented
             group dedicated to bringing innovative ideas to life through design
             and media. They play a key role in crafting visually engaging
@@ -63,7 +66,10 @@ export default function Story() {
             image for the Holy Cross of Davao College IT community.
           </p>
         </div>
+       
       </div>
     </Container>
+     <Footer />
+     </>
   );
 }

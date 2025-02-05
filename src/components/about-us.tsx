@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { Button } from "~/components/ui/buttons";
 
 export const About = () => {
   const router = useRouter();
@@ -63,14 +64,15 @@ export const About = () => {
               Information Technology to the students of Holy Cross of Davao
               College.
             </p>
-            <div className="flex items-center underline">
-              <button
-                className="font-montserrat sm:text-[20px] md:text-[25px] lg:text-3xl transition-opacity duration-300 ease-in-out hover:opacity-70 mt-14"
+            <div className="mt-10">
+              <Button
+                variant="secondary"
+               
                 onClick={() => router.push("/story")}
               >
                 Our Story
-              </button>
-              <IoArrowForward className="w-8 h-8 ml-2 mt-14" />
+                <IoArrowForward className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </motion.div>
 
