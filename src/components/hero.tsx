@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import logo from "~/assets/images/logo.png";
 import hero from "~/assets/images/its-hero.png";
 import { Navbar } from "./navbar";
+import { ExpandableFab } from "./ui/expandable-fab";
+import ShinyText from "./ui/shiny-text";
 
 export const Hero = () => {
   const router = useRouter();
@@ -22,24 +24,22 @@ export const Hero = () => {
                     <Image src={logo} alt="" width={90} height={90} />
                   </div>
                 </div>
-                <div className="font-questrial text-transparent text-start font-bold sm:text-7xl text-4xl bg-clip-text bg-gradient-to-br from-white via-neutral-200 to-black/[0.6]">
-                  Bridging Faith and Innovation
-                </div>
-                <div className="font-inter text-white/[0.7] text-start sm:text-xl text-sm">
+                <h1
+                  className="font-inter-tight text-start font-extrabold sm:text-[7rem] md:text-[8rem] text-5xl leading-[0.9] tracking-tight uppercase pb-1 flex flex-col items-start"
+                >
+                  <ShinyText text="Bridging" speed={3} color="#b5b5b5" shineColor="#ffffff" spread={120} />
+                  <ShinyText text="Faith And" speed={3} color="#b5b5b5" shineColor="#ffffff" spread={120} />
+                  <ShinyText text="Innovation" speed={3} color="#b5b5b5" shineColor="#ffffff" spread={120} />
+                </h1>
+                <div className="font-questrial text-white/80 text-start text-xl mt-1 font-light tracking-wide">
                   Empowering Holy Crossians through Technology
                 </div>
-                <div className="font-inter mt-5 w-full flex max-sm:flex-col sm:justify-start gap-4 text-white">
-                  <button
-                    className="group h-10 sm:h-8 w-full sm:w-36 bg-gradient-to-br from-red-900 to-gray-900 border border-red-900 rounded-lg flex items-center justify-center gap-1.5"
-                    onClick={() => router.push("/story")}
-                  >
-                    <span>Our Story</span>
-                    <span className="group-hover:translate-x-0.5 transition-all">
-                      &rarr;
-                    </span>
-                  </button>
-                  <button className="h-8 flex items-center justify-center underline">
-                    <span>Contact us</span>
+                <div className="font-inter mt-8 w-full flex items-center max-sm:flex-col sm:justify-start text-white isolate">
+                  <div className="w-full sm:w-auto z-20 relative">
+                    <ExpandableFab />
+                  </div>
+                  <button className="relative z-10 flex items-center justify-center font-questrial font-bold uppercase tracking-widest text-sm border border-white/30 border-l-0 rounded-r-full rounded-l-none py-4 pl-8 pr-8 -ml-5 hover:bg-white/5 hover:border-white/60 transition-all group">
+                    <span className="group-hover:text-red-400 transition-colors">Contact us</span>
                   </button>
                 </div>
               </div>

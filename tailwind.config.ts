@@ -102,6 +102,7 @@ const config: Config = {
         montserrat: ["var(--font-montserrat)", "sans-serif"],
         questrial: ["var(--font-questrial)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        "inter-tight": ["var(--font-inter-tight)", "sans-serif"],
       },
     },
   },

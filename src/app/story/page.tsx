@@ -67,6 +67,15 @@ export default function Story() {
               Cross of Davao College IT community.
             </p>
           </div>
+
+          <div className="mt-20 flex justify-center">
+            <a
+              href="/"
+              className="px-8 py-3 bg-white text-black font-questrial font-bold rounded-full hover:bg-neutral-200 transition-colors"
+            >
+              Go to Home
+            </a>
+          </div>
         </div>
       </Container>
       <Footer />

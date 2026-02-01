@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "~/components/ui/buttons";
+import TrueFocus from "./ui/true-focus";
 
 export const About = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ export const About = () => {
             <div className="mt-10">
               <Button
                 variant="secondary"
-               
+
                 onClick={() => router.push("/story")}
               >
                 Our Story
@@ -118,9 +119,16 @@ export const About = () => {
             </motion.div>
           </motion.div>
 
-          <h3 className="font-questrial font-medium text-4xl mb-8">
-            Our Objectives
-          </h3>
+          <div className="mb-12">
+            <TrueFocus
+              sentence="Our Objectives"
+              manualMode={false}
+              blurAmount={5}
+              borderColor="#dc2626"
+              animationDuration={0.8}
+              pauseBetweenAnimations={1.5}
+            />
+          </div>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-4"
             variants={fadeInUp}

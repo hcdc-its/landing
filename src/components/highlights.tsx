@@ -1,190 +1,134 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { Container } from "~/components/ui/containers";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import techtalk1 from "~/assets/highlights/techtalk-1.jpg";
 import techtalk2 from "~/assets/highlights/techtalk-2.jpg";
 import techtalk3 from "~/assets/highlights/techtalk-3.jpg";
 import techtalk4 from "~/assets/highlights/techtalk-4.jpg";
-import techtalk5 from "~/assets/highlights/techtalk-5.jpg";
-import techtalk6 from "~/assets/highlights/techtalk-6.jpg";
-import techtalk7 from "~/assets/highlights/techtalk-7.jpg";
-import techtalk8 from "~/assets/highlights/techtalk-8.jpg";
-import techtalk9 from "~/assets/highlights/techtalk-9.jpg";
-import techtalk10 from "~/assets/highlights/techtalk-10.jpg";
-import techtalk11 from "~/assets/highlights/techtalk-11.jpg";
 
-const images = [
+const categories = [
   {
-    src: techtalk1,
-    alt: "Tech Talk 1",
+    id: "events",
+    title: "EVENTS",
+    subtitle: "MILESTONES & GATHERINGS",
+    items: [
+      { id: 1, image: techtalk1, title: "Tech Talk 2024", desc: "Annual technology conference" },
+      { id: 2, image: techtalk2, title: "Hackathon", desc: "24-hour coding challenge" },
+      { id: 3, image: techtalk3, title: "Workshop", desc: "Hands-on learning session" },
+      { id: 4, image: techtalk4, title: "Seminars", desc: "Industry Experts" },
+    ],
   },
-
   {
-    src: techtalk2,
-    alt: "Tech Talk 2",
+    id: "outside",
+    title: "OUTSIDE",
+    subtitle: "REPRESENTING HCDC",
+    items: [
+      { id: 5, image: techtalk1, title: "City Meetup", desc: "Networking with professionals" },
+      { id: 6, image: techtalk4, title: "Regional Contest", desc: "Competing against top schools" },
+      { id: 7, image: techtalk2, title: "Campus Tour", desc: "External visits" },
+      { id: 8, image: techtalk3, title: "Outreach", desc: "Community Service" },
+    ],
   },
-
   {
-    src: techtalk3,
-    alt: "Tech Talk 3",
-  },
-
-  {
-    src: techtalk4,
-    alt: "Tech Talk 4",
-  },
-
-  {
-    src: techtalk5,
-    alt: "Tech Talk 5",
-  },
-
-  {
-    src: techtalk6,
-    alt: "Tech Talk 6",
-  },
-
-  {
-    src: techtalk7,
-    alt: "Tech Talk 7",
-  },
-
-  {
-    src: techtalk8,
-    alt: "Tech Talk 8",
-  },
-
-  {
-    src: techtalk9,
-    alt: "Tech Talk 9",
-  },
-
-  {
-    src: techtalk10,
-    alt: "Tech Talk 10",
-  },
-
-  {
-    src: techtalk11,
-    alt: "Tech Talk 11",
+    id: "news",
+    title: "NEWS",
+    subtitle: "PROGRAM UPDATES",
+    items: [
+      { id: 9, image: techtalk2, title: "New Curriculum", desc: "Updated syllabus for 2025" },
+      { id: 10, image: techtalk3, title: "Faculty Awards", desc: "Recognizing excellence" },
+      { id: 11, image: techtalk4, title: "Partnerships", desc: "New industry alliances" },
+      { id: 12, image: techtalk1, title: "Accreditation", desc: "Level III Status" },
+    ],
   },
 ];
 
-export const Highlights = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+const Section = ({ category, index }: { category: typeof categories[0], index: number }) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"]
+  });
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    // Initial check
-    checkMobile();
-    
-    // Add resize listener
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === images.length ? 0 : prevIndex + 1
-    );
-  };
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const getVisibleImages = () => {
-    const visibleImages = [];
-    const imagesToShow = isMobile ? 1 : 3;
-    for (let i = 0; i < imagesToShow; i++) {
-      const index = (currentIndex + i) % images.length;
-      visibleImages.push(images[index]);
-    }
-    return visibleImages;
-  };
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1]);
 
   return (
-    <section id="highlights" className="scroll-mt-40 my-28">
-      <Container variant={"fullMobileBreakpointPadded"}>
-        <div className="text-start mb-12">
-          <h3 className="font-questrial font-medium text-4xl">
-            Department Highlights
-          </h3>
+    <section ref={targetRef} className="relative h-[250vh] bg-neutral-950">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        {/* Background Typography */}
+        <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none select-none">
+          <h2 className="text-[20vw] font-inter-tight font-black text-white leading-none tracking-tighter">
+            {category.title}
+          </h2>
         </div>
 
-        <div className="relative overflow-hidden">
-          <div className="flex gap-4">
-            <AnimatePresence initial={false} mode="wait">
-              {getVisibleImages().map((image, index) => (
-                <motion.div
-                  key={`${currentIndex}-${index}`}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className={`relative ${
-                    isMobile 
-                      ? 'w-full aspect-[4/3]' 
-                      : 'w-1/3 aspect-[4/3]'
-                  }`}
-                >
-                  <div className="relative w-full h-full rounded-xl overflow-hidden">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      sizes={isMobile ? "100vw" : "33vw"}
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+        {/* Glowing Spine Line (Vertical) */}
+        <div className="absolute left-8 md:left-20 top-0 bottom-0 w-px bg-white/10 z-10">
+          <motion.div
+            style={{ scaleY: scrollYProgress }}
+            className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-500 via-red-500 to-transparent origin-top"
+          />
+        </div>
+
+        {/* Content Container */}
+        <motion.div style={{ opacity, scale }} className="relative z-20 w-full pl-16 md:pl-32 pr-8">
+          <div className="mb-12">
+            <span className="block text-red-500 font-inter font-bold tracking-widest text-sm mb-2">
+              0{index + 1} — {category.subtitle}
+            </span>
+            <h3 className="text-5xl md:text-7xl font-inter-tight font-bold text-white uppercase">
+              {category.title}
+            </h3>
+          </div>
+
+          {/* Horizontal Parallax Strip */}
+          <div className="overflow-hidden">
+            <motion.div style={{ x }} className="flex gap-8 w-max">
+              {category.items.map((item) => (
+                <div key={item.id} className="relative w-[80vw] md:w-[600px] h-[50vh] md:h-[500px] shrink-0 group overflow-hidden rounded-md border border-white/10 bg-neutral-900">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
+
+                  <div className="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0 translate-y-2">
+                    <h4 className="text-3xl font-bold text-white mb-2">{item.title}</h4>
+                    <div className="h-1 w-12 bg-red-500 mb-4" />
+                    <p className="text-neutral-400 font-inter">{item.desc}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </AnimatePresence>
+            </motion.div>
           </div>
-
-          <button
-            onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 md:p-3 rounded-full backdrop-blur-sm transition-colors z-10"
-            aria-label="Previous image"
-          >
-            <FaChevronLeft className="w-6 h-6 md:w-5 md:h-5" />
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 md:p-3 rounded-full backdrop-blur-sm transition-colors z-10"
-            aria-label="Next image"
-          >
-            <FaChevronRight className="w-6 h-6 md:w-5 md:h-5" />
-          </button>
-
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 md:w-2 md:h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-white" : "bg-white/50"
-                }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </Container>
+        </motion.div>
+      </div>
     </section>
+  );
+};
+
+export const Highlights = () => {
+  return (
+    <div id="highlights" className="bg-neutral-950">
+      <div className="py-20 px-4 text-center">
+        <h3 className="font-questrial font-medium text-4xl text-neutral-500 mb-4">
+          Department Highlights
+        </h3>
+        <p className="text-white text-xl font-inter">Exploring our journey through time</p>
+      </div>
+
+      {categories.map((category, index) => (
+        <Section key={category.id} category={category} index={index} />
+      ))}
+
+      <div className="h-[20vh] bg-neutral-950" />
+    </div>
   );
 };

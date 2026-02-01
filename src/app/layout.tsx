@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Questrial } from "next/font/google";
+import { Inter, Questrial, Inter_Tight } from "next/font/google";
 import LenisScrollProvider from "~/providers/lenis-provider";
 import { ThemeProvider } from "~/components/theme-provider";
 
@@ -14,6 +14,13 @@ const questrial = Questrial({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-questrial",
+  display: "swap",
+});
+
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -33,7 +40,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${questrial.variable} ${inter.variable} antialiased`}>
+      <body className={`${questrial.variable} ${inter.variable} ${interTight.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

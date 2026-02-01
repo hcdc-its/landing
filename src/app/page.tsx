@@ -1,23 +1,5 @@
-import { About } from "~/components/about-us";
-import { Hero } from "~/components/hero";
-import { Navbar } from "~/components/navbar";
-import { Connect } from "~/components/connect";
-import { Footer } from "~/components/footer";
-import { Highlights } from "~/components/highlights";
-import { FAQ } from "~/components/faq";
+import HomeClient from "~/components/home-client";
 
 export default function Home() {
-  return (
-    <>
-      <main>
-        <Navbar />
-        <Hero />
-        <About />
-        <Highlights />
-        <FAQ />
-        <Connect />
-        <Footer />
-      </main>
-    </>
-  );
+  return <HomeClient />;
 }
