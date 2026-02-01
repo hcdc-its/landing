@@ -40,6 +40,21 @@ const COLOR_OPTIONS = [
     },
 ];
 
+const PIN_OPTIONS = [
+    {
+        id: "crimson",
+        name: "Crimson Logo",
+        hex: "#dc2626",
+        img: "/pins/crimson.png"
+    },
+    {
+        id: "midnight",
+        name: "Midnight Logo",
+        hex: "#000000",
+        img: "/pins/midnight.png"
+    }
+];
+
 const HOTSPOTS = [
     { id: "IT", side: "front", x: "50%", y: "42%", label: "CORE_IDENTITY", title: "Information Technology", description: "The primary design element, representing the bold identity of the BSIT program at HCDC." },
 
@@ -214,6 +229,7 @@ export default function MerchPage() {
     const router = useRouter();
     const [selectedColor, setSelectedColor] = useState(COLOR_OPTIONS[1]);
     const [selectedSize, setSelectedSize] = useState("L");
+    const [selectedPin, setSelectedPin] = useState(PIN_OPTIONS[0]);
     const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
     const [productView, setProductView] = useState<"front" | "back">("front");
     const [designView, setDesignView] = useState<"front" | "back">("front");
@@ -433,6 +449,104 @@ export default function MerchPage() {
                                         </span>
                                     ))}
                                 </motion.div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SECTION 1.5: BUTTON PINS SHOWCASE - NEW */}
+                    <div className="pt-40 mb-80 border-t border-white/5">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                            {/* Pin Preview */}
+                            <div className="lg:col-span-8 relative group flex flex-col items-center justify-center p-0 h-[600px] overflow-visible">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={selectedPin.id}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                        className="relative w-[400px] h-[400px]"
+                                    >
+                                        <Image
+                                            src={selectedPin.img}
+                                            alt={`ITS Button Pin - ${selectedPin.name}`}
+                                            fill
+                                            className="object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.05)]"
+                                        />
+                                    </motion.div>
+                                </AnimatePresence>
+                                <div className="mt-8 flex items-center gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                                    <p className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase">Component.Accessory_Type.01</p>
+                                </div>
+                            </div>
+
+                            {/* Pin Selection UI */}
+                            <div className="lg:col-span-4 flex flex-col justify-center">
+                                <div className="space-y-4 mb-20 text-start">
+                                    <p className="text-[10px] font-black tracking-[0.5em] text-red-600 uppercase mb-4">New.Arrival</p>
+                                    <h2 className="text-7xl font-black font-inter-tight tracking-tighter uppercase leading-[0.8]">
+                                        BUTTON <br />
+                                        <span className="text-neutral-500">PINS</span>
+                                    </h2>
+                                </div>
+
+                                {/* Pin variant switcher */}
+                                <div className="space-y-6 mb-10">
+                                    <p className="text-[10px] uppercase font-bold text-neutral-600 tracking-[0.4em] mb-4">PIN_VARIANT</p>
+                                    <div className="flex gap-4">
+                                        {PIN_OPTIONS.map((pin) => (
+                                            <button
+                                                key={pin.id}
+                                                onClick={() => setSelectedPin(pin)}
+                                                className={`
+                                                    w-12 h-12 rounded-full border transition-all duration-500 p-1
+                                                    ${selectedPin.id === pin.id ? 'border-red-600 scale-110 shadow-[0_0_15px_rgba(220,38,38,0.3)]' : 'border-white/10 hover:border-white/40'}
+                                                `}
+                                            >
+                                                <div
+                                                    className="w-full h-full rounded-full"
+                                                    style={{ backgroundColor: pin.hex }}
+                                                />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Specs info */}
+                                <div className="space-y-6 mb-14">
+                                    <p className="text-[10px] uppercase font-bold text-neutral-600 tracking-[0.4em] mb-4">SPECIFICATIONS</p>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                            <p className="text-[8px] font-bold text-neutral-600 uppercase tracking-widest mb-1">Diameter</p>
+                                            <p className="text-[10px] font-black text-neutral-200">1.25 INCH</p>
+                                        </div>
+                                        <div className="p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                            <p className="text-[8px] font-bold text-neutral-600 uppercase tracking-widest mb-1">Finish</p>
+                                            <p className="text-[10px] font-black text-neutral-200">METALLIC</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Purchase UI */}
+                                <div className="space-y-10">
+                                    <div className="flex justify-between items-end border-b border-white/5 pb-10">
+                                        <div className="text-start">
+                                            <p className="text-7xl font-black font-inter-tight tracking-tighter">₱25</p>
+                                        </div>
+                                        <div className="text-end">
+                                            <p className="text-[8px] font-bold text-neutral-600 uppercase tracking-widest mb-1">Unit Price</p>
+                                            <p className="text-[10px] font-black text-green-500 uppercase tracking-widest">In_Stock</p>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setIsOrderModalOpen(true)}
+                                        className="w-full h-16 bg-white text-black font-questrial font-black uppercase tracking-[0.2em] hover:bg-neutral-200 transition-all rounded-full flex items-center justify-center text-[10px] whitespace-nowrap px-6 group"
+                                    >
+                                        ORDER NOW
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
