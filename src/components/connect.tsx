@@ -47,159 +47,157 @@ export const Connect = () => {
     }));
   };
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: "easeOut" },
-  };
-
   return (
-    <section id="contact" className="scroll-mt-40 my-20">
+    <section id="contact" className="scroll-mt-40 mt-20 mb-0">
       <Container variant={"fullMobileBreakpointPadded"}>
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Social Links Section */}
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
+          {/* Left Column: Branding & Socials */}
           <motion.div
-            className="text-center"
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            variants={fadeInUp}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-12"
           >
-            <h3 className="font-questrial font-medium text-4xl mb-5 md:mb-12">
-              Connect with Us
-            </h3>
-
-            <div className="flex justify-center items-center gap-8 mb-10">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col items-center gap-2"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="p-4 rounded-full bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 group-hover:border-its-red/50 transition-colors">
-                    {social.icon}
-                  </div>
-                  <span className="font-inter text-sm text-neutral-400 group-hover:text-white transition-colors">
-                    {social.label}
-                  </span>
-                </motion.a>
-              ))}
+            <div className="space-y-6">
+              <h3 className="font-inter-tight font-black text-6xl sm:text-7xl lg:text-8xl tracking-tighter uppercase leading-[0.8] italic">
+                Get in <br />
+                <span className="text-neutral-500">Touch</span>
+              </h3>
+              <p className="font-questrial text-neutral-400 text-lg max-w-md leading-relaxed">
+                Whether you have a question about our events, membership, or just want to say hi, our team is ready to connect.
+              </p>
             </div>
+
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-neutral-900/50 border border-white/5 hover:border-its-red/30 hover:bg-neutral-900 transition-all group"
+                    whileHover={{ y: -5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <span className="text-neutral-400 group-hover:text-its-red transition-colors">
+                      {social.icon}
+                    </span>
+                    <span className="font-inter-tight text-sm font-bold text-neutral-300 group-hover:text-white transition-colors">
+                      {social.label}
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            {/* Availability Status */}
           </motion.div>
 
-          {/* Contact Form Section */}
+          {/* Right Column: Contact Form */}
           <motion.div
-            className="text-left"
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
           >
-            <h3 className="font-questrial font-medium text-2xl mb-8">
-              Send us a Message
-            </h3>
+            {/* Decorative background element */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-its-red/5 to-transparent blur-3xl opacity-50 pointer-events-none" />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block font-inter text-sm text-neutral-400 mb-2"
+            <div className="relative bg-neutral-900/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-8 sm:p-12 shadow-2xl">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="block text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] ml-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/5 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-all"
+                      placeholder="Juan Dela Cruz"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] ml-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/5 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-all"
+                      placeholder="juan@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="company" className="block text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] ml-2">
+                      Organization
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/5 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-all"
+                      placeholder="Company Name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] ml-2">
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/5 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-all"
+                      placeholder="+63 000 000 0000"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-[10px] font-black text-neutral-500 uppercase tracking-[0.2em] ml-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/5 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-all resize-none"
+                    placeholder="Tell us what's on your mind..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full h-16 bg-white text-black font-inter-tight font-black uppercase tracking-[0.2em] text-xs hover:bg-its-red hover:text-white transition-all duration-500 rounded-2xl shadow-xl hover:shadow-its-red/20 active:scale-[0.98]"
                 >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
-                  placeholder="Enter your name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block font-inter text-sm text-neutral-400 mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="company"
-                  className="block font-inter text-sm text-neutral-400 mb-2"
-                >
-                  Company/Organization
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
-                  placeholder="Enter your company or organization"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block font-inter text-sm text-neutral-400 mb-2"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block font-inter text-sm text-neutral-400 mb-2"
-                >
-                  Additional Information
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors resize-none"
-                  placeholder="Enter any additional information"
-                />
-              </div>
-
-              <Button type="submit">Send Message</Button>
-            </form>
+                  Send Message
+                </button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </Container>

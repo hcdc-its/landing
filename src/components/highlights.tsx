@@ -56,7 +56,7 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
     offset: ["start start", "end end"]
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(category.items.length - 1) * 25}%`]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(category.items.length - 1) * (category.id === 'merchs' ? 18 : 25)}%`]);
   const opacity = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.1], [0.9, 1]);
 
@@ -93,25 +93,25 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
           <div className="overflow-hidden">
             <motion.div style={{ x }} className={`flex gap-12 w-max ${category.id === 'merchs' ? 'pl-8 md:pl-[30vw]' : 'pl-8 md:pl-[12vw]'} pr-[12vw]`}>
               {category.items.map((item) => (
-                <div key={item.id} className={`relative w-[80vw] md:w-[600px] h-[50vh] md:h-[500px] shrink-0 group overflow-hidden rounded-md transition-all duration-500 ${category.id === 'merchs' ? 'bg-transparent' : 'border border-white/10 bg-neutral-900'}`}>
+                <div key={item.id} className={`relative w-[85vw] sm:w-[600px] md:w-[20vw] h-[50vh] md:h-[500px] shrink-0 group overflow-hidden rounded-md transition-all duration-500 ${category.id === 'merchs' ? 'bg-transparent' : 'border border-white/10 bg-neutral-900'}`}>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className={`transition-transform duration-700 group-hover:scale-110 ${category.id === 'merchs' ? 'object-contain pl-32 pr-8 py-8' : 'object-cover grayscale group-hover:grayscale-0'}`}
+                    className={`transition-transform duration-700 group-hover:scale-110 ${category.id === 'merchs' ? 'object-contain pl-16 sm:pl-32 pr-4 sm:pr-8 py-8' : 'object-cover grayscale group-hover:grayscale-0'}`}
                   />
                   {category.id !== 'merchs' && (
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
                   )}
 
                   {category.id === 'merchs' ? (
-                    <div className="absolute left-8 top-1/2 -translate-y-1/2 flex rotate-90 origin-center z-30 pointer-events-none whitespace-nowrap">
-                      <div className="flex items-center bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-xl shadow-black/20 overflow-hidden">
-                        <div className="px-6 py-2.5 border-r border-white/20">
-                          <span className="text-white font-black text-[10px] uppercase tracking-[0.2em]">{item.title}</span>
+                    <div className="absolute left-6 sm:left-8 top-1/2 -translate-y-1/2 flex rotate-90 origin-center z-30 pointer-events-none whitespace-nowrap">
+                      <div className="flex items-center bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-xl shadow-black/20 overflow-hidden scale-75 sm:scale-100">
+                        <div className="px-4 sm:px-6 py-2 sm:py-2.5 border-r border-white/20">
+                          <span className="text-white font-black text-[9px] sm:text-[10px] uppercase tracking-[0.2em]">{item.title}</span>
                         </div>
-                        <div className="px-6 py-2.5 bg-white/5">
-                          <span className="text-white/40 font-bold text-[9px] uppercase tracking-[0.3em]">{item.desc}</span>
+                        <div className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/5">
+                          <span className="text-white/40 font-bold text-[8px] sm:text-[9px] uppercase tracking-[0.3em]">{item.desc}</span>
                         </div>
                       </div>
                     </div>

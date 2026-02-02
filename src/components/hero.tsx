@@ -17,15 +17,15 @@ export const Hero = () => {
         <div className="w-full h-full relative bg-grid-white/[0.0] px-4">
           <Container variant={"fullMobileBreakpointPadded"}>
 
-            <div className=" h-screen flex items-center">
-              <div className="w-full lg:w-1/2 h-full flex flex-col sm:items-start items-start justify-center relative z-[1] animate-moveUp">
+            <div className="h-screen flex items-center">
+              <div className="w-full lg:w-1/2 h-full flex flex-col items-start justify-center relative z-[1] animate-moveUp">
                 <div className="relative w-full">
-                  <div className="absolute left-0 -top-28">
-                    <Image src={logo} alt="" width={90} height={90} />
+                  <div className="absolute left-0 -top-16 sm:-top-28">
+                    <Image src={logo} alt="" width={70} height={70} className="sm:w-[90px] sm:h-[90px]" />
                   </div>
                 </div>
                 <h1
-                  className="font-inter-tight text-start font-extrabold sm:text-[7rem] md:text-[8rem] text-5xl leading-[0.9] tracking-tight uppercase pb-1 flex flex-col items-start"
+                  className="font-inter-tight text-start font-extrabold text-[3.5rem] sm:text-[7rem] md:text-[8rem] leading-[0.9] tracking-tight uppercase pb-1 flex flex-col items-start mt-12 sm:mt-0"
                 >
                   <ShinyText text="Bridging" speed={3} color="#b5b5b5" shineColor="#ffffff" spread={120} />
                   <ShinyText text="Faith And" speed={3} color="#b5b5b5" shineColor="#ffffff" spread={120} />
@@ -34,13 +34,8 @@ export const Hero = () => {
                 <div className="font-questrial text-white/80 text-start text-xl mt-1 font-light tracking-wide">
                   Empowering Holy Crossians through Technology
                 </div>
-                <div className="font-inter mt-8 w-full flex items-center max-sm:flex-col sm:justify-start text-white isolate">
-                  <div className="w-full sm:w-auto z-20 relative">
-                    <ExpandableFab />
-                  </div>
-                  <button className="relative z-10 flex items-center justify-center font-questrial font-bold uppercase tracking-widest text-sm border border-white/30 border-l-0 rounded-r-full rounded-l-none py-4 pl-8 pr-8 -ml-5 hover:bg-white/5 hover:border-white/60 transition-all group">
-                    <span className="group-hover:text-its-red transition-colors">Contact us</span>
-                  </button>
+                <div className="font-inter mt-8">
+                  <ExpandableFab className="rounded-full" />
                 </div>
               </div>
             </div>

@@ -7,7 +7,7 @@ import { HiUserGroup, HiSparkles, HiClock } from "react-icons/hi";
 
 import { createPortal } from "react-dom";
 
-export const ExpandableFab = () => {
+export const ExpandableFab = ({ className }: { className?: string }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -83,12 +83,12 @@ export const ExpandableFab = () => {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <motion.button
-                    className="relative z-20 flex items-center justify-between gap-4 pl-8 pr-2 py-3 bg-gradient-to-r from-its-red to-its-red rounded-full text-white font-questrial font-bold text-lg tracking-wide shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-its-red/30 hover:brightness-110 transition-all overflow-hidden w-auto min-w-[180px]"
+                    className={`relative z-20 flex items-center justify-between gap-4 pl-8 pr-2 py-5 sm:py-4 bg-gradient-to-r from-its-red to-its-red text-white font-questrial font-bold text-sm tracking-wide shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-its-red/30 hover:brightness-110 transition-all overflow-hidden w-auto ${className || "rounded-full"}`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleNavigation("/story")}
                 >
-                    <span>Our Story</span>
+                    <span className="whitespace-nowrap">Our Story</span>
                     <span className="bg-white/20 rounded-full p-2 flex items-center justify-center">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7" />

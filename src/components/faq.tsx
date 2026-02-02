@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "What events can I look forward to?",
-    answer: "Our society organizes a variety of events including Tech Talks, Hackathons, Workshops, and Seminars featuring industry experts. These are designed to bridge the gap between academic learning and industry requirements."
+    answer: "Our society organizes a variety of events including Tech Talks, PSITS (interschool event), Workshops, and Seminars featuring industry experts. These are designed to bridge the gap between academic learning and industry requirements."
   },
 ];
 

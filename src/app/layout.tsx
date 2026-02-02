@@ -30,6 +30,8 @@ export const metadata: Metadata = {
     "HCDC Information Technology Society Official Publication Website",
 };
 
+import { Developers } from "~/components/developers";
+
 export default function RootLayout({
   children,
 }: {
@@ -49,6 +51,7 @@ export default function RootLayout({
         >
           <LenisScrollProvider>
             {children}
+            <Developers />
           </LenisScrollProvider>
         </ThemeProvider>
       </body>

@@ -6,6 +6,8 @@ import { Container } from "~/components/ui/containers";
 import { Navbar } from "~/components/navbar";
 import { HiChevronDown, HiFilter } from "react-icons/hi";
 
+import { Footer } from "~/components/footer";
+
 // Officer type definition
 interface Officer {
     id: string;
@@ -122,8 +124,11 @@ export default function OfficersPage() {
     const president = currentOfficers.find((o) => o.isPresident);
     const moderator = currentOfficers.find((o) => o.isModerator);
     const filteredOfficers = currentOfficers.filter(
-        (o) => o.team === activeTab && !o.isPresident
+        (o) => o.team === activeTab && !o.isPresident && !o.isModerator
     );
+    const officersToDisplay = activeTab === "executives" && moderator
+        ? [moderator, ...filteredOfficers]
+        : filteredOfficers;
 
     return (
         <div className="min-h-screen bg-black text-white">
@@ -213,17 +218,86 @@ export default function OfficersPage() {
                     </motion.div>
 
                     {/* Officers Grid */}
-                    <div className="grid lg:grid-cols-4 gap-8">
-                        {/* Officers List (3 columns on large screens) */}
+                    <div className="flex flex-col lg:flex-row gap-8">
+                        {/* Highlights (President/Moderator) - Comes first on mobile, side on desktop */}
+                        {(president || selectedYear === "2025-2026") && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                                className="w-full lg:w-1/4 order-first lg:order-last"
+                            >
+                                <div className="sticky top-28 space-y-6">
+                                    {president && (
+                                        <div className="relative bg-gradient-to-br from-its-red/30 to-black border border-its-red/30 rounded-3xl p-6 sm:p-8 overflow-hidden">
+                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/10 to-transparent" />
+                                            <div className="relative z-10">
+                                                <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden relative mb-6 border-2 border-its-red/20 shadow-2xl shadow-its-red/20">
+                                                    {president.image ? (
+                                                        <img src={president.image} alt={president.name} className="w-full h-full object-cover" />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-gradient-to-br from-its-red to-its-red flex items-center justify-center">
+                                                            <span className="font-questrial text-6xl font-bold text-white">
+                                                                {president.name.charAt(0)}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <h3 className="font-questrial text-2xl sm:text-3xl font-bold text-white text-center mb-2 leading-none">
+                                                    {president.name}
+                                                </h3>
+                                                <p className="font-inter text-its-red text-center font-bold tracking-widest uppercase text-xs sm:text-sm mb-4">
+                                                    President
+                                                </p>
+                                                <p className="font-inter text-neutral-500 text-[10px] sm:text-xs text-center">
+                                                    S.Y. {selectedYear}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedYear === "2025-2026" && (
+                                        <div className="relative group bg-gradient-to-br from-white/5 to-black border border-white/10 rounded-3xl p-6 overflow-hidden transition-all hover:border-its-red/30">
+                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="relative z-10">
+                                                <div className="flex items-center gap-3 mb-6">
+                                                    <div className="w-1 h-6 bg-its-red rounded-full" />
+                                                    <h4 className="font-questrial text-lg sm:text-xl font-bold text-white uppercase tracking-wider">
+                                                        Official Uniform
+                                                    </h4>
+                                                </div>
+                                                <div className="relative w-full aspect-square bg-white/[0.02] rounded-2xl overflow-hidden mb-6 border border-white/5 flex items-center justify-center p-4">
+                                                    <img
+                                                        src="/shirts/officershirt/its officer polo shirt .png"
+                                                        alt="ITS Officer Polo Shirt"
+                                                        className="w-full h-full object-contain filter drop-shadow-2xl translate-y-2 group-hover:translate-y-0 transition-transform duration-700"
+                                                    />
+                                                </div>
+                                                <div className="text-center">
+                                                    <h5 className="font-inter text-white font-black text-xs sm:text-sm uppercase tracking-widest mb-1">
+                                                        Officer Polo Shirt
+                                                    </h5>
+                                                    <p className="font-inter text-neutral-500 text-[9px] sm:text-[10px] uppercase tracking-widest font-bold">
+                                                        Batch 2025 — 2026
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {/* Officers Grid */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="lg:col-span-3"
+                            className="w-full lg:w-3/4"
                         >
-                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                 <AnimatePresence mode="wait">
-                                    {filteredOfficers.map((officer, index) => (
+                                    {officersToDisplay.map((officer, index) => (
                                         <motion.div
                                             key={officer.id}
                                             initial={{ opacity: 0, y: 20 }}
@@ -273,94 +347,17 @@ export default function OfficersPage() {
                                     ))}
                                 </AnimatePresence>
 
-                                {filteredOfficers.length === 0 && (
+                                {officersToDisplay.length === 0 && (
                                     <div className="col-span-full py-12 text-center text-neutral-500">
                                         No officers found for this team.
                                     </div>
                                 )}
                             </div>
                         </motion.div>
-
-                        {/* President Card (1 column on large screens) */}
-                        {(president || moderator) && (
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, delay: 0.3 }}
-                                className="lg:col-span-1"
-                            >
-                                <div className="sticky top-28 space-y-6">
-                                    {/* President Card - Moderator is now in main grid */}
-                                    {president && (
-                                        <div className="relative bg-gradient-to-br from-its-red/30 to-black border border-its-red/30 rounded-3xl p-8 overflow-hidden">
-                                            {/* Glow Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/10 to-transparent" />
-
-                                            {/* Content */}
-                                            <div className="relative z-10">
-                                                <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden relative mb-6 border-2 border-its-red/20 shadow-2xl shadow-its-red/20">
-                                                    {president.image ? (
-                                                        <img src={president.image} alt={president.name} className="w-full h-full object-cover" />
-                                                    ) : (
-                                                        <div className="w-full h-full bg-gradient-to-br from-its-red to-its-red flex items-center justify-center">
-                                                            <span className="font-questrial text-6xl font-bold text-white">
-                                                                {president.name.charAt(0)}
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </div>
-
-                                                <h3 className="font-questrial text-3xl font-bold text-white text-center mb-2 leading-none">
-                                                    {president.name}
-                                                </h3>
-                                                <p className="font-inter text-its-red text-center font-bold tracking-widest uppercase text-sm mb-4">
-                                                    President
-                                                </p>
-                                                <p className="font-inter text-neutral-500 text-xs text-center">
-                                                    S.Y. {selectedYear}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Batch 25-26 Uniform Spotlight */}
-                                    {selectedYear === "2025-2026" && (
-                                        <div className="relative group bg-gradient-to-br from-white/5 to-black border border-white/10 rounded-3xl p-6 overflow-hidden transition-all hover:border-its-red/30">
-                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            <div className="relative z-10">
-                                                <div className="flex items-center gap-3 mb-6">
-                                                    <div className="w-1 h-6 bg-its-red rounded-full" />
-                                                    <h4 className="font-questrial text-xl font-bold text-white uppercase tracking-wider">
-                                                        Official Uniform
-                                                    </h4>
-                                                </div>
-
-                                                <div className="relative w-full aspect-square bg-white/[0.02] rounded-2xl overflow-hidden mb-6 border border-white/5 flex items-center justify-center p-4">
-                                                    <img
-                                                        src="/shirts/officershirt/its officer polo shirt .png"
-                                                        alt="ITS Officer Polo Shirt"
-                                                        className="w-full h-full object-contain filter drop-shadow-2xl translate-y-2 group-hover:translate-y-0 transition-transform duration-700"
-                                                    />
-                                                </div>
-
-                                                <div className="text-center">
-                                                    <h5 className="font-inter text-white font-black text-sm uppercase tracking-widest mb-1">
-                                                        Officer Polo Shirt
-                                                    </h5>
-                                                    <p className="font-inter text-neutral-500 text-[10px] uppercase tracking-widest font-bold">
-                                                        Batch 2025 — 2026
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                </div>
-                            </motion.div>
-                        )}
                     </div>
                 </div>
             </Container>
+            <Footer />
         </div>
     );
 }
