@@ -43,7 +43,7 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className=" my-28">
+    <section id="about" className=" pt-28 pb-10">
       <Container variant={"fullMobileBreakpointPadded"} className="scroll-mt-40">
         <motion.div
           className="mt-10"

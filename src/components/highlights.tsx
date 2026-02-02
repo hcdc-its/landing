@@ -23,8 +23,8 @@ const categories = [
     ],
   },
   {
-    id: "outside",
-    title: "OUTSIDE",
+    id: "achievements",
+    title: "ACHIEVEMENTS",
     subtitle: "REPRESENTING HCDC",
     items: [
       { id: 5, image: techtalk1, title: "City Meetup", desc: "Networking with professionals" },
@@ -34,14 +34,17 @@ const categories = [
     ],
   },
   {
-    id: "news",
-    title: "NEWS",
-    subtitle: "PROGRAM UPDATES",
+    id: "merchs",
+    title: "MERCHS",
+    subtitle: "OFFICIAL MERCHANDISE",
     items: [
-      { id: 9, image: techtalk2, title: "New Curriculum", desc: "Updated syllabus for 2025" },
-      { id: 10, image: techtalk3, title: "Faculty Awards", desc: "Recognizing excellence" },
-      { id: 11, image: techtalk4, title: "Partnerships", desc: "New industry alliances" },
-      { id: 12, image: techtalk1, title: "Accreditation", desc: "Level III Status" },
+      { id: 9, image: "/shirts/BLACK FRONT.png", title: "Midnight Black", desc: "Front Design" },
+      { id: 10, image: "/shirts/BLACK BACK.png", title: "Midnight Black", desc: "Back Design" },
+      { id: 11, image: "/shirts/RED FRONT.png", title: "Crimson Red", desc: "Front Design" },
+      { id: 12, image: "/shirts/RED BACK.png", title: "Crimson Red", desc: "Back Design" },
+      { id: 13, image: "/shirts/WHITE FRONT.png", title: "Pure White", desc: "Front Design" },
+      { id: 14, image: "/shirts/WHITE BACK.png", title: "Pure White", desc: "Back Design" },
+      { id: 15, image: "/pins/pinits.png", title: "ITS Logo Pin", desc: "Official Accessory" },
     ],
   },
 ];
@@ -53,16 +56,16 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
     offset: ["start start", "end end"]
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(category.items.length - 1) * 25}%`]);
+  const opacity = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.1], [0.9, 1]);
 
   return (
     <section ref={targetRef} className="relative h-[250vh] bg-transparent">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         {/* Background Typography */}
         <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none select-none">
-          <h2 className="text-[20vw] font-inter-tight font-black text-white leading-none tracking-tighter">
+          <h2 className="text-[12vw] font-inter-tight font-black text-white leading-none tracking-tighter uppercase">
             {category.title}
           </h2>
         </div>
@@ -76,8 +79,8 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
         </div>
 
         {/* Content Container */}
-        <motion.div style={{ opacity, scale }} className="relative z-20 w-full pl-16 md:pl-32 pr-8">
-          <div className="mb-12">
+        <motion.div style={{ opacity, scale }} className="relative z-20 w-full">
+          <div className="mb-12 pl-8 md:pl-[12vw] pr-8">
             <span className="block text-its-red font-inter font-bold tracking-widest text-sm mb-2">
               0{index + 1} — {category.subtitle}
             </span>
@@ -88,22 +91,37 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
 
           {/* Horizontal Parallax Strip */}
           <div className="overflow-hidden">
-            <motion.div style={{ x }} className="flex gap-8 w-max">
+            <motion.div style={{ x }} className={`flex gap-12 w-max ${category.id === 'merchs' ? 'pl-8 md:pl-[30vw]' : 'pl-8 md:pl-[12vw]'} pr-[12vw]`}>
               {category.items.map((item) => (
-                <div key={item.id} className="relative w-[80vw] md:w-[600px] h-[50vh] md:h-[500px] shrink-0 group overflow-hidden rounded-md border border-white/10 bg-neutral-900">
+                <div key={item.id} className={`relative w-[80vw] md:w-[600px] h-[50vh] md:h-[500px] shrink-0 group overflow-hidden rounded-md transition-all duration-500 ${category.id === 'merchs' ? 'bg-transparent' : 'border border-white/10 bg-neutral-900'}`}>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    className={`transition-transform duration-700 group-hover:scale-110 ${category.id === 'merchs' ? 'object-contain pl-32 pr-8 py-8' : 'object-cover grayscale group-hover:grayscale-0'}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
+                  {category.id !== 'merchs' && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
+                  )}
 
-                  <div className="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0 translate-y-2">
-                    <h4 className="text-3xl font-bold text-white mb-2">{item.title}</h4>
-                    <div className="h-1 w-12 bg-its-red mb-4" />
-                    <p className="text-neutral-400 font-inter">{item.desc}</p>
-                  </div>
+                  {category.id === 'merchs' ? (
+                    <div className="absolute left-8 top-1/2 -translate-y-1/2 flex rotate-90 origin-center z-30 pointer-events-none whitespace-nowrap">
+                      <div className="flex items-center bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-xl shadow-black/20 overflow-hidden">
+                        <div className="px-6 py-2.5 border-r border-white/20">
+                          <span className="text-white font-black text-[10px] uppercase tracking-[0.2em]">{item.title}</span>
+                        </div>
+                        <div className="px-6 py-2.5 bg-white/5">
+                          <span className="text-white/40 font-bold text-[9px] uppercase tracking-[0.3em]">{item.desc}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className={`absolute bottom-8 left-8 right-8 flex flex-col items-start transition-transform duration-500 group-hover:translate-y-0 translate-y-2 z-30`}>
+                      <h4 className="text-3xl font-bold text-white mb-2">{item.title}</h4>
+                      <div className="h-1 w-12 bg-its-red mb-4" />
+                      <p className="text-neutral-400 font-inter">{item.desc}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </motion.div>

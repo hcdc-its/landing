@@ -60,15 +60,39 @@ const officersData: Record<string, Officer[]> = {
     ],
     "2024-2025": [
         // Moderator
-        { id: "0", name: "Faculty Moderator", position: "Moderator", team: "moderator", isModerator: true },
+        { id: "24-mod", name: "Keana Cerela Giron", position: "Moderator", team: "executives", isModerator: true, image: "/officers (24-25)/giron.png" },
         // Executives
-        { id: "1", name: "Juan Dela Cruz", position: "President", team: "executives", isPresident: true },
-        { id: "2", name: "Maria Santos", position: "Internal Vice President", team: "executives" },
-        { id: "3", name: "Pedro Reyes", position: "External Vice President", team: "executives" },
-        { id: "4", name: "Ana Garcia", position: "Secretary", team: "executives" },
-        // ... previous placeholder data can remain or be cleaned up
-        { id: "5", name: "Carlos Lopez", position: "Assistant Secretary", team: "executives" },
-        { id: "6", name: "Sofia Cruz", position: "Treasurer", team: "executives" },
+        { id: "24-1", name: "Crissalyn Joy Casuyon", position: "President", team: "executives", isPresident: true, image: "/officers (24-25)/casuyon.png" },
+        { id: "24-2", name: "Jovi Nica Macuha", position: "Internal Vice President", team: "executives", image: "/officers (24-25)/Macuha.png" },
+        { id: "24-3", name: "Blenchie Cuadra", position: "External Vice President", team: "executives", image: "/officers (24-25)/Cuadra.png" },
+        { id: "24-4", name: "Jessamine Angelica De Lara", position: "Secretary", team: "executives", image: "/officers (24-25)/DE LARA.png" },
+        { id: "24-5", name: "Karen Eliguen Refamonte", position: "Assistant Secretary", team: "executives", image: "/officers (24-25)/REFAMONTE.png" },
+        { id: "24-6", name: "Xurhiel Almero", position: "Treasurer", team: "executives", image: "/officers (24-25)/almero.png" },
+        { id: "24-7", name: "Etherlyn Faith Saludares", position: "Assistant Treasurer", team: "executives", image: "/officers (24-25)/saludares.png" },
+        { id: "24-9", name: "Pit Frankie Ceniza", position: "Auditor", team: "executives", image: "/officers (24-25)/ceniza.png" },
+        { id: "24-10", name: "Honnie Pilletero", position: "Assistant Auditor", team: "executives", image: "/officers (24-25)/pilletero.png" },
+        { id: "24-11", name: "Adrian Hinayon", position: "Business Manager", team: "executives", image: "/officers (24-25)/hinayon.png" },
+        { id: "24-8", name: "Ashlee Madriñan", position: "Assistant Business Manager", team: "executives", image: "/officers (24-25)/madrinan.png" },
+        { id: "24-13", name: "Orville Salvilla", position: "Public Information Officer", team: "executives", image: "/officers (24-25)/savilla.png" },
+        { id: "24-14", name: "John Erick Diaz", position: "1st Year Representative", team: "executives" },
+        { id: "24-15", name: "Jacky Rapal", position: "1st Year Representative", team: "executives" },
+        { id: "24-16", name: "Chriss Laurence Olanda", position: "2nd Year Representative", team: "executives", image: "/officers (24-25)/Olanda.png" },
+        { id: "24-17", name: "Riya Dacay", position: "3rd Year Representative", team: "executives", image: "/officers (24-25)/dacay.png" },
+        { id: "24-18", name: "Rod Riven Ladroma", position: "4th Year Representative", team: "executives", image: "/officers (24-25)/ladroma.png" },
+
+        // Logistics
+        { id: "24-19", name: "Jun Michael Fukuzawa", position: "Logistics Head", team: "logistics", image: "/officers (24-25)/Fukuzawa.png" },
+        { id: "24-20", name: "Earl Andre Ledesma", position: "Logistics Head", team: "logistics", image: "/officers (24-25)/ledesma.png" },
+        { id: "24-12", name: "Kingwee Konlee Huelva", position: "Logistics Committee", team: "logistics", image: "/officers (24-25)/kingwee.png" },
+
+        // Creatives
+        { id: "24-21", name: "Nicose Soriano", position: "Creatives Head/Manager", team: "creatives", image: "/officers (24-25)/soriano.png" },
+        { id: "24-22", name: "Catherine Arnado", position: "Graphic Designer", team: "creatives", image: "/officers (24-25)/ARNADO.png" },
+        { id: "24-23", name: "Ryan Estoque", position: "Graphic Designer", team: "creatives", image: "/officers (24-25)/estoque.png" },
+        { id: "24-24", name: "Romer Quibod", position: "Graphic Designer", team: "creatives", image: "/officers (24-25)/ogsoc.png" },
+        { id: "24-25", name: "Rhonan Madarang", position: "Photographer", team: "creatives", image: "/officers (24-25)/MADARANG.png" },
+        { id: "24-26", name: "Joey Salazar", position: "Illustrator", team: "creatives", image: "/officers (24-25)/SALAZAR.png" },
+        { id: "24-27", name: "Dhruv Guboc", position: "Video Editor", team: "creatives", image: "/officers (24-25)/GUBOC.png" },
     ]
 };
 
@@ -206,10 +230,15 @@ export default function OfficersPage() {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{ duration: 0.3, delay: index * 0.05 }}
-                                            className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all"
+                                            className={`group relative border transition-all duration-300 rounded-2xl p-6 ${officer.isModerator
+                                                ? 'bg-gradient-to-br from-its-red/20 via-black to-black border-its-red/50 shadow-[0_0_20px_rgba(150,0,0,0.2)] hover:border-its-red hover:shadow-[0_0_30px_rgba(150,0,0,0.4)]'
+                                                : 'bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10 hover:border-white/20'}`}
                                         >
+                                            {officer.isModerator && (
+                                                <div className="absolute inset-0 bg-gradient-to-tr from-its-red/10 via-transparent to-transparent opacity-60 rounded-2xl pointer-events-none" />
+                                            )}
                                             {/* ID Card Image Area */}
-                                            <div className="w-full aspect-[3/4] mb-4 bg-gradient-to-br from-white/10 to-transparent rounded-xl overflow-hidden relative border border-white/10 group-hover:border-white/20 transition-colors">
+                                            <div className={`w-full aspect-[3/4] mb-4 bg-gradient-to-br from-white/10 to-transparent rounded-xl overflow-hidden relative border transition-colors ${officer.isModerator ? 'border-its-red/30 group-hover:border-its-red/60' : 'border-white/10 group-hover:border-white/20'}`}>
                                                 {officer.image ? (
                                                     <img src={officer.image} alt={officer.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                                 ) : (
@@ -293,6 +322,39 @@ export default function OfficersPage() {
                                             </div>
                                         </div>
                                     )}
+
+                                    {/* Batch 25-26 Uniform Spotlight */}
+                                    {selectedYear === "2025-2026" && (
+                                        <div className="relative group bg-gradient-to-br from-white/5 to-black border border-white/10 rounded-3xl p-6 overflow-hidden transition-all hover:border-its-red/30">
+                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="relative z-10">
+                                                <div className="flex items-center gap-3 mb-6">
+                                                    <div className="w-1 h-6 bg-its-red rounded-full" />
+                                                    <h4 className="font-questrial text-xl font-bold text-white uppercase tracking-wider">
+                                                        Official Uniform
+                                                    </h4>
+                                                </div>
+
+                                                <div className="relative w-full aspect-square bg-white/[0.02] rounded-2xl overflow-hidden mb-6 border border-white/5 flex items-center justify-center p-4">
+                                                    <img
+                                                        src="/shirts/officershirt/its officer polo shirt .png"
+                                                        alt="ITS Officer Polo Shirt"
+                                                        className="w-full h-full object-contain filter drop-shadow-2xl translate-y-2 group-hover:translate-y-0 transition-transform duration-700"
+                                                    />
+                                                </div>
+
+                                                <div className="text-center">
+                                                    <h5 className="font-inter text-white font-black text-sm uppercase tracking-widest mb-1">
+                                                        Officer Polo Shirt
+                                                    </h5>
+                                                    <p className="font-inter text-neutral-500 text-[10px] uppercase tracking-widest font-bold">
+                                                        Batch 2025 — 2026
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
                                 </div>
                             </motion.div>
                         )}

@@ -42,31 +42,23 @@ const COLOR_OPTIONS = [
 
 const PIN_OPTIONS = [
     {
-        id: "crimson",
-        name: "Crimson Logo",
+        id: "its-logo",
+        name: "ITS Logo",
         hex: "#960000",
-        img: "/pins/crimson.png"
-    },
-    {
-        id: "midnight",
-        name: "Midnight Logo",
-        hex: "#000000",
-        img: "/pins/midnight.png"
+        img: "/pins/pinits.png"
     }
 ];
 
 const HOTSPOTS = [
-    { id: "IT", side: "front", x: "50%", y: "42%", label: "CORE_IDENTITY", title: "Information Technology", description: "The primary design element, representing the bold identity of the BSIT program at HCDC." },
+    { id: "IT", side: "front", x: "50%", y: "42%", label: "CORE_IDENTITY", title: "BSIT Identity", description: "Highlights the proud identity of the Bachelor of Science in Information Technology, representing a fresh era of growth and forward movement." },
 
-    { id: "logo", side: "back", x: "50%", y: "15%", label: "OFFICIAL_SEAL", title: "HCDC Logo", description: "The official seal of the Holy Cross of Davao College, symbolizing our heritage and institutional pride." },
-    { id: "keychain", side: "back", x: "36%", y: "65%", label: "INTEGRATION", title: "Key Element", description: "A symbolic integration element representing the tools and keys to success in the digital era." },
-    { id: "world-it", side: "back", x: "50%", y: "45%", label: "BRAND_CONCEPT", title: "World of IT", description: "A detailed graphic representing the global reach and interconnected nature of modern Information Technology." },
-    { id: "objectives", side: "back", x: "50%", y: "85%", label: "MISSION_DATA", title: "ITS Objectives", description: "INNOVATION • COMMUNITY • GROWTH. The three pillars that define our society's mission and vision." },
+    { id: "logo", side: "back", x: "50%", y: "15%", label: "OFFICIAL_SEAL", title: "HCDC Logo", description: "The official seal of the Holy Cross of Davao College, symbolizing our heritage and institutional pride within the IT program." },
+    { id: "keychain", side: "back", x: "36%", y: "65%", label: "ESSENTIALS", title: "The Keychain", description: "Small but meaningful items representing IT life: includes a monitor, mouse, keyboard, and the official BSIT plate." },
+    { id: "world-it", side: "back", x: "50%", y: "45%", label: "GLOBAL_VISION", title: "World of IT", description: "Symbolizes global opportunities. We are ready to conquer the world as we explore technologies and create digital solutions." },
+    { id: "objectives", side: "back", x: "50%", y: "85%", label: "CORE_OBJECTIVES", title: "Society Pillars", description: "INNOVATE • COMMUNITY • GROWTH. The three core objectives that guide us to create, collaborate, and continuously improve." },
 ];
 
 const Hotspot = ({ point, active, onClick }: { point: typeof HOTSPOTS[0], active: boolean, onClick: () => void }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
     return (
         <div
             className="absolute z-30 group"
@@ -74,68 +66,82 @@ const Hotspot = ({ point, active, onClick }: { point: typeof HOTSPOTS[0], active
         >
             <button
                 onClick={onClick}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={`relative flex items-center justify-center transition-all duration-300 ${active ? 'scale-125' : 'hover:scale-110'}`}
             >
-                {/* Hover Quick-Info */}
-
-
-                <div className="absolute w-10 h-10 bg-green-500/30 rounded-full animate-ping" />
-                <div className="w-8 h-8 bg-green-500/20 border border-green-400 rounded-full flex items-center justify-center backdrop-blur-sm shadow-[0_0_15px_rgba(74,222,128,0.5)]">
-                    <div className="w-3 h-3 bg-green-400 rounded-full" />
+                <div className={`absolute w-7 h-7 ${active ? 'bg-its-red/40' : 'bg-its-red/20'} rounded-full animate-ping opacity-75`} />
+                <div className={`w-5 h-5 ${active ? 'bg-its-red/30 border-its-red' : 'bg-its-red/10 border-its-red/50'} border rounded-full flex items-center justify-center backdrop-blur-md shadow-[0_0_20px_rgba(150,0,0,0.4)] transition-all duration-500`}>
+                    <div className={`w-1.5 h-1.5 ${active ? 'bg-white scale-125' : 'bg-its-red'} rounded-full transition-all duration-500`} />
                 </div>
             </button>
 
             <AnimatePresence>
                 {active && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                        className="absolute bottom-14 left-1/2 -translate-x-1/2 w-80 bg-neutral-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 pointer-events-none overflow-hidden"
+                        initial={{ opacity: 0, scale: 0.9, y: 15, rotateX: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 15, rotateX: 20 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute bottom-14 left-1/2 -translate-x-1/2 w-80 bg-neutral-950/95 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.9)] z-50 pointer-events-none overflow-hidden perspective-1000"
                     >
+                        {/* Technical Scanning Pattern */}
+                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 1px, #fff 1px, #fff 2px)`, backgroundSize: '100% 4px' }} />
+
                         {/* Detail Window Content */}
-                        <div className="px-5 py-3 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                                <div className="text-green-400">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M13 10V3L4 14H11V21L20 10H13Z" />
-                                    </svg>
+                        <div className="px-5 py-3.5 border-b border-white/5 bg-gradient-to-r from-its-red/20 to-transparent flex justify-start items-center relative overflow-hidden">
+                            <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-1.5">
+                                    <div className="w-1 h-1 rounded-full bg-its-red animate-pulse" />
+                                    <span className="text-[10px] font-black tracking-[0.25em] text-white">TECH_SPEC</span>
                                 </div>
-                                <span className="text-[9px] font-black tracking-[0.2em] text-green-400 uppercase">TECH.SPEC</span>
                             </div>
-                            <span className="text-[9px] font-mono text-neutral-600 uppercase">SYS.ID.{point.id.toUpperCase()}</span>
+
+                            {/* Header Scan Line */}
+                            <motion.div
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                                className="absolute bottom-0 left-0 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-its-red to-transparent opacity-50"
+                            />
                         </div>
 
-                        <div className="p-6">
-                            <h4 className="font-inter-tight text-xl font-black uppercase mb-4 tracking-tight flex items-center gap-3 italic">
+                        <div className="p-7 relative">
+                            {/* Decorative Corner Brackets */}
+                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-its-red/30" />
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-its-red/30" />
+
+                            <h4 className="font-inter-tight text-2xl font-black uppercase mb-5 tracking-tighter italic text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50 leading-none">
                                 {point.title}
                             </h4>
 
-                            <div className="flex gap-4">
-                                <div className="w-1 bg-green-500/50 rounded-full shrink-0" />
-                                <p className="font-questrial text-xs text-neutral-400 leading-relaxed py-1">
+                            <div className="flex gap-5">
+                                <div className="w-1.5 h-auto bg-gradient-to-b from-its-red via-its-red/50 to-transparent rounded-full shrink-0 shadow-[0_0_10px_rgba(150,0,0,0.5)]" />
+                                <p className="font-questrial text-[13px] text-neutral-400 leading-relaxed font-medium">
                                     {point.description}
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-3 mt-6">
-                                <div className="p-3 bg-white/[0.03] border border-white/5 rounded-xl">
-                                    <p className="text-[8px] font-bold text-neutral-600 uppercase tracking-widest mb-1">Status</p>
-                                    <p className="text-[10px] font-bold text-neutral-200">OPTIMIZED</p>
+                            <div className="grid grid-cols-2 gap-4 mt-8">
+                                <div className="p-4 bg-white/5 border border-white/5 rounded-2xl relative group overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-its-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <p className="text-[9px] font-black text-neutral-500 uppercase tracking-[0.2em] mb-1.5">Status</p>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
+                                        <p className="text-[11px] font-black text-white tracking-wide uppercase">Active</p>
+                                    </div>
                                 </div>
-                                <div className="p-3 bg-white/[0.03] border border-white/5 rounded-xl">
-                                    <p className="text-[8px] font-bold text-neutral-600 uppercase tracking-widest mb-1">Type</p>
-                                    <p className="text-[10px] font-bold text-neutral-200">{point.label}</p>
+                                <div className="p-4 bg-white/5 border border-white/5 rounded-2xl relative group overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-its-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <p className="text-[9px] font-black text-neutral-500 uppercase tracking-[0.2em] mb-1.5">Type</p>
+                                    <p className="text-[11px] font-black text-white tracking-wide uppercase">{point.label.replace('_', ' ')}</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-end px-4 pb-2 opacity-20">
+
+                        {/* Footer Status Indicators */}
+                        <div className="px-7 pb-6 flex justify-start items-center bg-gradient-to-t from-white/5 to-transparent pt-4">
                             <div className="flex gap-1">
-                                <div className="w-1 h-1 rounded-full bg-white" />
-                                <div className="w-1 h-1 rounded-full bg-white" />
-                                <div className="w-1 h-1 rounded-full bg-white" />
+                                {[...Array(5)].map((_, i) => (
+                                    <div key={i} className={`h-1.5 w-4 rounded-sm ${i < 3 ? 'bg-its-red/60' : 'bg-white/5'}`} />
+                                ))}
                             </div>
                         </div>
                     </motion.div>
@@ -292,7 +298,7 @@ export default function MerchPage() {
                                 <motion.div
                                     key={`${selectedColor.id}-${productView}`}
                                     initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1.25 }}
+                                    animate={{ opacity: 1, scale: 1.45 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     className="relative w-full h-full flex items-center justify-center overflow-visible"
@@ -304,11 +310,11 @@ export default function MerchPage() {
                                 </motion.div>
                             </AnimatePresence>
 
-                            {/* Viewport Toggle Overlay for Main Product */}
+                            {/* Viewport Toggle Overlay for Main Product - SIMPLE PILL */}
                             <div className="mt-12">
-                                <div className="relative flex p-1.5 bg-neutral-900/50 backdrop-blur-md rounded-full w-[300px] h-16 border border-white/5 items-center shadow-2xl">
+                                <div className="relative flex p-1.5 bg-neutral-900/50 backdrop-blur-md rounded-full w-[280px] h-14 border border-white/5 items-center shadow-2xl">
                                     <motion.div
-                                        className="absolute h-13 bg-white/10 rounded-full z-0"
+                                        className="absolute h-11 bg-white/10 rounded-full z-0"
                                         initial={false}
                                         animate={{
                                             width: "calc(50% - 6px)",
@@ -318,13 +324,13 @@ export default function MerchPage() {
                                     />
                                     <button
                                         onClick={() => setProductView("front")}
-                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-xs tracking-[0.2em] transition-all duration-500 ${productView === 'front' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
+                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'front' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                     >
                                         FRONT
                                     </button>
                                     <button
                                         onClick={() => setProductView("back")}
-                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-xs tracking-[0.2em] transition-all duration-500 ${productView === 'back' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
+                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'back' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                     >
                                         BACK
                                     </button>
@@ -415,7 +421,7 @@ export default function MerchPage() {
                     {/* INTERSECTION MARQUEES - CROSSING 'X' */}
                     <div className="relative w-screen left-1/2 -ml-[50vw] h-[500px] flex items-center justify-center overflow-hidden">
                         {/* Diagonal 1 */}
-                        <div className="absolute w-[150%] rotate-[6deg] border-y border-white/10 py-8 bg-black/40 backdrop-blur-sm z-10">
+                        <div className="absolute w-[150%] rotate-[6deg] border-y border-white/10 py-8 bg-neutral-950/90 backdrop-blur-2xl z-10 shadow-2xl">
                             <div className="flex overflow-hidden whitespace-nowrap">
                                 <motion.div
                                     animate={{ x: [0, -1000] }}
@@ -434,12 +440,12 @@ export default function MerchPage() {
                         </div>
 
                         {/* Diagonal 2 */}
-                        <div className="absolute w-[150%] rotate-[-6deg] border-y border-its-red/50 py-8 bg-black/40 backdrop-blur-sm z-0">
+                        <div className="absolute w-[150%] rotate-[-6deg] border-y border-white/20 py-8 bg-its-red/90 backdrop-blur-2xl z-0 shadow-2xl">
                             <div className="flex overflow-hidden whitespace-nowrap">
                                 <motion.div
                                     animate={{ x: [-1000, 0] }}
                                     transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                                    className="flex gap-20 text-7xl font-black font-inter-tight uppercase italic text-its-red/50"
+                                    className="flex gap-20 text-7xl font-black font-inter-tight uppercase italic text-white/90"
                                 >
                                     {[...Array(4)].map((_, i) => (
                                         <span key={i} className="flex gap-20">
@@ -475,10 +481,7 @@ export default function MerchPage() {
                                         />
                                     </motion.div>
                                 </AnimatePresence>
-                                <div className="mt-8 flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-its-red animate-pulse" />
-                                    <p className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase">Component.Accessory_Type.01</p>
-                                </div>
+
                             </div>
 
                             {/* Pin Selection UI */}
@@ -491,27 +494,28 @@ export default function MerchPage() {
                                     </h2>
                                 </div>
 
-                                {/* Pin variant switcher */}
-                                <div className="space-y-6 mb-10">
-                                    <p className="text-[10px] uppercase font-bold text-neutral-600 tracking-[0.4em] mb-4">PIN_VARIANT</p>
-                                    <div className="flex gap-4">
-                                        {PIN_OPTIONS.map((pin) => (
-                                            <button
-                                                key={pin.id}
-                                                onClick={() => setSelectedPin(pin)}
-                                                className={`
-                                                    w-12 h-12 rounded-full border transition-all duration-500 p-1
-                                                    ${selectedPin.id === pin.id ? 'border-its-red scale-110 shadow-[0_0_15px_rgba(220,38,38,0.3)]' : 'border-white/10 hover:border-white/40'}
-                                                `}
-                                            >
-                                                <div
-                                                    className="w-full h-full rounded-full"
-                                                    style={{ backgroundColor: pin.hex }}
-                                                />
-                                            </button>
-                                        ))}
+                                {PIN_OPTIONS.length > 1 && (
+                                    <div className="space-y-6 mb-10">
+                                        <p className="text-[10px] uppercase font-bold text-neutral-600 tracking-[0.4em] mb-4">PIN_VARIANT</p>
+                                        <div className="flex gap-4">
+                                            {PIN_OPTIONS.map((pin) => (
+                                                <button
+                                                    key={pin.id}
+                                                    onClick={() => setSelectedPin(pin)}
+                                                    className={`
+                                                        w-12 h-12 rounded-full border transition-all duration-500 p-1
+                                                        ${selectedPin.id === pin.id ? 'border-its-red scale-110 shadow-[0_0_15px_rgba(220,38,38,0.3)]' : 'border-white/10 hover:border-white/40'}
+                                                    `}
+                                                >
+                                                    <div
+                                                        className="w-full h-full rounded-full"
+                                                        style={{ backgroundColor: pin.hex }}
+                                                    />
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 {/* Specs info */}
                                 <div className="space-y-6 mb-14">
@@ -561,39 +565,55 @@ export default function MerchPage() {
                         </div>
 
                         <div className="flex flex-col gap-32">
-                            {/* Interaction Controls - SLEEK TOGGLE */}
+                            {/* Interaction Controls - HUD CONTROL MODULE */}
                             <div className="flex flex-col md:flex-row items-center justify-start gap-12 border-y border-white/5 py-12">
-                                <div className="space-y-4 text-start">
-                                    <p className="font-inter text-[10px] uppercase tracking-[0.5em] text-neutral-600 font-bold">VIEWPORT_TOGGLE</p>
-                                    <div className="flex items-center gap-8">
-                                        <div className="relative flex p-1.5 bg-neutral-900 rounded-full w-[400px] h-20 border border-white/10 items-center shadow-2xl">
+                                <div className="flex items-center gap-10 bg-black/20 p-6 rounded-3xl border border-white/5 backdrop-blur-xl shadow-2xl">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-3 opacity-50">
+                                            <div className="w-1 h-1 rounded-full bg-its-red animate-pulse" />
+                                            <p className="text-[8px] font-black tracking-[0.4em] text-white uppercase">VIEWPORT_SYNC</p>
+                                        </div>
+                                        <div className="relative flex p-1.5 bg-neutral-900/50 rounded-2xl w-[280px] h-16 border border-white/5 items-center relative overflow-hidden group/toggle">
+                                            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 1px, #fff 1px, #fff 2px)`, backgroundSize: '4px 100%' }} />
+
                                             <motion.div
-                                                className="absolute h-16 bg-its-red rounded-full z-0 shadow-[0_0_30px_rgba(220,38,38,0.4)]"
+                                                className="absolute h-13 bg-its-red rounded-xl z-0 shadow-[0_0_25px_rgba(150,0,0,0.4)]"
                                                 initial={false}
                                                 animate={{
                                                     width: "calc(50% - 6px)",
                                                     x: designView === "front" ? 0 : "100%"
                                                 }}
-                                                transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                                            />
+                                                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                            >
+                                                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
+                                                <div className="absolute top-2 left-2 w-1 h-1 border-t border-l border-white/40" />
+                                                <div className="absolute bottom-2 right-2 w-1 h-1 border-b border-r border-white/40" />
+                                            </motion.div>
+
                                             <button
                                                 onClick={() => setDesignView("front")}
-                                                className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-sm tracking-[0.2em] transition-all duration-500 ${designView === 'front' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
+                                                className={`relative z-10 flex-1 h-full font-black text-[11px] tracking-[0.25em] transition-all duration-500 uppercase italic ${designView === 'front' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
                                             >
-                                                01_Front
+                                                01_FRONT
                                             </button>
                                             <button
                                                 onClick={() => setDesignView("back")}
-                                                className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-sm tracking-[0.2em] transition-all duration-500 ${designView === 'back' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
+                                                className={`relative z-10 flex-1 h-full font-black text-[11px] tracking-[0.25em] transition-all duration-500 uppercase italic ${designView === 'back' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
                                             >
-                                                02_Back
+                                                02_BACK
                                             </button>
                                         </div>
+                                    </div>
 
-                                        <div className="hidden xl:flex flex-col">
-                                            <span className="text-its-red text-[10px] font-black tracking-[0.3em] uppercase mb-1">Interactive_Mapping</span>
-                                            <span className="text-neutral-500 text-[9px] font-medium leading-tight">CLICK ON THE HOTSPOTS <br />TO SCAN COMPONENT DATA</span>
+                                    <div className="h-10 w-px bg-white/10" />
+
+                                    <div className="space-y-1 text-start">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[10px] font-black tracking-[0.3em] text-its-red uppercase">INTERACTIVE_MAPPING</span>
                                         </div>
+                                        <p className="text-[9px] font-medium text-neutral-500 uppercase tracking-widest leading-relaxed">
+                                            CLICK ON THE HOTSPOTS<br />TO SCAN COMPONENT DATA
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -618,7 +638,7 @@ export default function MerchPage() {
                                                 src={designView === 'front' ? "/shirts/shirt designs/FRONT BLACK.RED.png" : "/shirts/shirt designs/BACK BLACK.RED.png"}
                                                 alt="Design Blueprint"
                                                 fill
-                                                className="object-contain p-0 md:p-10 scale-125 md:scale-[1.8] drop-shadow-[0_0_80px_rgba(255,255,255,0.03)]"
+                                                className="object-contain p-0 md:p-10 scale-[1.5] md:scale-[2.4] drop-shadow-[0_0_80px_rgba(255,255,255,0.03)]"
                                                 priority
                                             />
                                         </motion.div>

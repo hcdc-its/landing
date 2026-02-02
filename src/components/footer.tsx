@@ -55,7 +55,7 @@ export const Footer = () => {
             <FooterSection title="Resources" links={footerLinks.resources} />
             <FooterSection title="Socials" links={footerLinks.socials} />
             <FooterSection title="Open Source" links={footerLinks.openSource} />
-            
+
             <div className="relative w-full aspect-[5/1] sm:aspect-[5/2]">
               <Image
                 src={itslogo}
@@ -71,9 +71,9 @@ export const Footer = () => {
         <div className="border-t border-neutral-800 py-6">
           <p className="font-questrial text-sm text-neutral-400">
             HCDC ITS © {new Date().getFullYear()} All Rights Reserved / Designed and Developed by{" "}
-            <a 
-              href="https://github.com/kaizenics" 
-              target="_blank" 
+            <a
+              href="https://github.com/kaizenics"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:underline"
             >
