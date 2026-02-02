@@ -309,7 +309,7 @@ export default function MerchPage() {
                     {/* SECTION 1: E-COMMERCE SHOWCASE */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-80 items-center">
                         {/* Image Showcase - MAXIMUM SCALE */}
-                        <div className="lg:col-span-8 relative group flex flex-col items-center justify-start p-0 h-[600px] sm:h-[1000px] -mt-10 sm:-mt-20 overflow-visible">
+                        <div className="lg:col-span-8 relative group flex flex-col items-center justify-start p-0 h-[600px] sm:h-[1000px] -mt-10 sm:-mt-20 overflow-visible z-10">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={`${selectedColor.id}-${productView}`}
@@ -355,7 +355,7 @@ export default function MerchPage() {
                         </div>
 
                         {/* Selection UI */}
-                        <div className="lg:col-span-4 flex flex-col justify-center">
+                        <div className="lg:col-span-4 flex flex-col justify-center relative z-[60]">
                             <div className="space-y-4 mb-20 text-start">
                                 <h1 className="text-8xl md:text-9xl font-black font-inter-tight tracking-tighter uppercase flex flex-col items-start leading-[0.8]">
                                     <ShinyText text="WORLD" speed={3} />
