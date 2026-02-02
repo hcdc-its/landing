@@ -11,6 +11,7 @@ import { Connect } from "~/components/connect";
 import { Footer } from "~/components/footer";
 import { Highlights } from "~/components/highlights";
 import { FAQ } from "~/components/faq";
+import { AnimatedGradientBg } from "~/components/ui/animated-gradient-bg";
 
 export default function HomeClient() {
     const [isLoading, setIsLoading] = useState(true);
@@ -30,10 +31,15 @@ export default function HomeClient() {
                 <Navbar />
                 <Hero />
                 <Marquee />
-                <About />
-                <Highlights />
-                <FAQ />
-                <Connect />
+
+                <div className="relative bg-black">
+                    <AnimatedGradientBg />
+                    <About />
+                    <Highlights />
+                    <FAQ />
+                    <Connect />
+                </div>
+
                 <Footer />
             </main>
         </>

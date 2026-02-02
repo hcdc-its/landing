@@ -83,7 +83,7 @@ export const ExpandableFab = () => {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <motion.button
-                    className="relative z-20 flex items-center justify-between gap-4 pl-8 pr-2 py-3 bg-gradient-to-r from-red-600 to-red-900 rounded-full text-white font-questrial font-bold text-lg tracking-wide shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-red-500/30 hover:brightness-110 transition-all overflow-hidden w-auto min-w-[180px]"
+                    className="relative z-20 flex items-center justify-between gap-4 pl-8 pr-2 py-3 bg-gradient-to-r from-its-red to-its-red rounded-full text-white font-questrial font-bold text-lg tracking-wide shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-its-red/30 hover:brightness-110 transition-all overflow-hidden w-auto min-w-[180px]"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleNavigation("/story")}
@@ -117,7 +117,7 @@ export const ExpandableFab = () => {
                                     }}
                                     className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-left group transition-colors min-w-[200px]"
                                 >
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500/20 to-transparent flex items-center justify-center text-red-400 group-hover:text-red-300 group-hover:bg-red-500/30 transition-colors">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-its-red/20 to-transparent flex items-center justify-center text-its-red group-hover:text-red-300 group-hover:bg-its-red/30 transition-colors">
                                         <item.icon className="w-4 h-4" />
                                     </div>
                                     <div>

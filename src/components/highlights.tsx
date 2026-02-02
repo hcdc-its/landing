@@ -58,7 +58,7 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
   const scale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1]);
 
   return (
-    <section ref={targetRef} className="relative h-[250vh] bg-neutral-950">
+    <section ref={targetRef} className="relative h-[250vh] bg-transparent">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         {/* Background Typography */}
         <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none select-none">
@@ -71,14 +71,14 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
         <div className="absolute left-8 md:left-20 top-0 bottom-0 w-px bg-white/10 z-10">
           <motion.div
             style={{ scaleY: scrollYProgress }}
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-500 via-red-500 to-transparent origin-top"
+            className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-its-red via-its-red to-transparent origin-top"
           />
         </div>
 
         {/* Content Container */}
         <motion.div style={{ opacity, scale }} className="relative z-20 w-full pl-16 md:pl-32 pr-8">
           <div className="mb-12">
-            <span className="block text-red-500 font-inter font-bold tracking-widest text-sm mb-2">
+            <span className="block text-its-red font-inter font-bold tracking-widest text-sm mb-2">
               0{index + 1} — {category.subtitle}
             </span>
             <h3 className="text-5xl md:text-7xl font-inter-tight font-bold text-white uppercase">
@@ -101,7 +101,7 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
 
                   <div className="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0 translate-y-2">
                     <h4 className="text-3xl font-bold text-white mb-2">{item.title}</h4>
-                    <div className="h-1 w-12 bg-red-500 mb-4" />
+                    <div className="h-1 w-12 bg-its-red mb-4" />
                     <p className="text-neutral-400 font-inter">{item.desc}</p>
                   </div>
                 </div>
@@ -116,10 +116,10 @@ const Section = ({ category, index }: { category: typeof categories[0], index: n
 
 export const Highlights = () => {
   return (
-    <div id="highlights" className="bg-neutral-950">
+    <div id="highlights" className="bg-transparent">
       <div className="py-20 px-4 text-center">
         <h3 className="font-questrial font-medium text-4xl text-neutral-500 mb-4">
-          Department Highlights
+          Program Portfolio
         </h3>
         <p className="text-white text-xl font-inter">Exploring our journey through time</p>
       </div>
@@ -128,7 +128,7 @@ export const Highlights = () => {
         <Section key={category.id} category={category} index={index} />
       ))}
 
-      <div className="h-[20vh] bg-neutral-950" />
+      <div className="h-[20vh] bg-transparent" />
     </div>
   );
 };

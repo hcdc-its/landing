@@ -14,7 +14,7 @@ const COLOR_OPTIONS = [
     {
         id: "red",
         name: "Crimson Red",
-        hex: "#dc2626",
+        hex: "#960000",
         frontImg: "/shirts/RED FRONT.png",
         backImg: "/shirts/RED BACK.png",
         blueprintFront: "/shirts/shirt designs/FRONT BLACK.RED.png",
@@ -44,7 +44,7 @@ const PIN_OPTIONS = [
     {
         id: "crimson",
         name: "Crimson Logo",
-        hex: "#dc2626",
+        hex: "#960000",
         img: "/pins/crimson.png"
     },
     {
@@ -202,7 +202,7 @@ const ProductZoom = ({ src, alt }: { src: string; alt: string }) => {
                             {/* Scanning Overlay in Zoom Window */}
                             <div className="absolute inset-0 pointer-events-none border border-white/5" />
                             <div className="absolute top-4 left-4 flex items-center gap-1.5">
-                                <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-its-red animate-pulse" />
                                 <div className="text-[8px] font-black tracking-[0.2em] text-white/50 uppercase">System.Scan</div>
                             </div>
                         </motion.div>
@@ -215,7 +215,7 @@ const ProductZoom = ({ src, alt }: { src: string; alt: string }) => {
                                 top: `${zoomPos.y}%`,
                             }}
                         >
-                            <div className="w-1 h-1 bg-red-600 rounded-full" />
+                            <div className="w-1 h-1 bg-its-red rounded-full" />
                             <div className="absolute inset-0 border border-white/10 rounded-full scale-90" />
                         </div>
                     </motion.div>
@@ -247,7 +247,7 @@ export default function MerchPage() {
     const price = ["3XL", "4XL", "5XL"].includes(selectedSize) ? 400 : 300;
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-red-500/30 overflow-x-hidden">
+        <div className="min-h-screen bg-black text-white selection:bg-its-red/30 overflow-x-hidden">
             <AnimatePresence>
                 {isLoading && (
                     <motion.div
@@ -265,7 +265,7 @@ export default function MerchPage() {
                             <h1 className="text-8xl md:text-[12rem] font-black font-inter-tight tracking-tighter uppercase leading-[0.8] text-center">
                                 merch
                             </h1>
-                            <div className="w-24 h-1 bg-red-600 mt-8" />
+                            <div className="w-24 h-1 bg-its-red mt-8" />
                         </motion.div>
                     </motion.div>
                 )}
@@ -351,7 +351,7 @@ export default function MerchPage() {
                                             onClick={() => setSelectedColor(color)}
                                             className={`
                                                 w-12 h-12 rounded-full border transition-all duration-500 p-1
-                                                ${selectedColor.id === color.id ? 'border-red-600 scale-110' : 'border-white/10 hover:border-white/40'}
+                                                ${selectedColor.id === color.id ? 'border-its-red scale-110' : 'border-white/10 hover:border-white/40'}
                                             `}
                                         >
                                             <div
@@ -373,7 +373,7 @@ export default function MerchPage() {
                                             onClick={() => setSelectedSize(size)}
                                             className={`
                                                 h-12 flex items-center justify-center text-[10px] font-black transition-all duration-300 border
-                                                ${selectedSize === size ? 'bg-red-600 border-red-600 text-white' : 'bg-transparent border-white/10 text-neutral-500 hover:border-white/30'}
+                                                ${selectedSize === size ? 'bg-its-red border-its-red text-white' : 'bg-transparent border-white/10 text-neutral-500 hover:border-white/30'}
                                             `}
                                         >
                                             {size}
@@ -434,12 +434,12 @@ export default function MerchPage() {
                         </div>
 
                         {/* Diagonal 2 */}
-                        <div className="absolute w-[150%] rotate-[-6deg] border-y border-red-600/50 py-8 bg-black/40 backdrop-blur-sm z-0">
+                        <div className="absolute w-[150%] rotate-[-6deg] border-y border-its-red/50 py-8 bg-black/40 backdrop-blur-sm z-0">
                             <div className="flex overflow-hidden whitespace-nowrap">
                                 <motion.div
                                     animate={{ x: [-1000, 0] }}
                                     transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                                    className="flex gap-20 text-7xl font-black font-inter-tight uppercase italic text-red-600/50"
+                                    className="flex gap-20 text-7xl font-black font-inter-tight uppercase italic text-its-red/50"
                                 >
                                     {[...Array(4)].map((_, i) => (
                                         <span key={i} className="flex gap-20">
@@ -476,7 +476,7 @@ export default function MerchPage() {
                                     </motion.div>
                                 </AnimatePresence>
                                 <div className="mt-8 flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                                    <div className="w-2 h-2 rounded-full bg-its-red animate-pulse" />
                                     <p className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase">Component.Accessory_Type.01</p>
                                 </div>
                             </div>
@@ -484,7 +484,7 @@ export default function MerchPage() {
                             {/* Pin Selection UI */}
                             <div className="lg:col-span-4 flex flex-col justify-center">
                                 <div className="space-y-4 mb-20 text-start">
-                                    <p className="text-[10px] font-black tracking-[0.5em] text-red-600 uppercase mb-4">New.Arrival</p>
+                                    <p className="text-[10px] font-black tracking-[0.5em] text-its-red uppercase mb-4">New.Arrival</p>
                                     <h2 className="text-7xl font-black font-inter-tight tracking-tighter uppercase leading-[0.8]">
                                         BUTTON <br />
                                         <span className="text-neutral-500">PINS</span>
@@ -501,7 +501,7 @@ export default function MerchPage() {
                                                 onClick={() => setSelectedPin(pin)}
                                                 className={`
                                                     w-12 h-12 rounded-full border transition-all duration-500 p-1
-                                                    ${selectedPin.id === pin.id ? 'border-red-600 scale-110 shadow-[0_0_15px_rgba(220,38,38,0.3)]' : 'border-white/10 hover:border-white/40'}
+                                                    ${selectedPin.id === pin.id ? 'border-its-red scale-110 shadow-[0_0_15px_rgba(220,38,38,0.3)]' : 'border-white/10 hover:border-white/40'}
                                                 `}
                                             >
                                                 <div
@@ -568,7 +568,7 @@ export default function MerchPage() {
                                     <div className="flex items-center gap-8">
                                         <div className="relative flex p-1.5 bg-neutral-900 rounded-full w-[400px] h-20 border border-white/10 items-center shadow-2xl">
                                             <motion.div
-                                                className="absolute h-16 bg-red-600 rounded-full z-0 shadow-[0_0_30px_rgba(220,38,38,0.4)]"
+                                                className="absolute h-16 bg-its-red rounded-full z-0 shadow-[0_0_30px_rgba(220,38,38,0.4)]"
                                                 initial={false}
                                                 animate={{
                                                     width: "calc(50% - 6px)",
@@ -591,7 +591,7 @@ export default function MerchPage() {
                                         </div>
 
                                         <div className="hidden xl:flex flex-col">
-                                            <span className="text-red-500 text-[10px] font-black tracking-[0.3em] uppercase mb-1">Interactive_Mapping</span>
+                                            <span className="text-its-red text-[10px] font-black tracking-[0.3em] uppercase mb-1">Interactive_Mapping</span>
                                             <span className="text-neutral-500 text-[9px] font-medium leading-tight">CLICK ON THE HOTSPOTS <br />TO SCAN COMPONENT DATA</span>
                                         </div>
                                     </div>
@@ -663,11 +663,11 @@ export default function MerchPage() {
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             className="relative w-full max-w-lg bg-neutral-950 border border-white/10 p-12 overflow-hidden"
                         >
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-its-red to-transparent" />
 
                             <div className="space-y-8 text-center">
                                 <div className="space-y-2">
-                                    <p className="text-[10px] font-black tracking-[0.5em] text-red-600 uppercase">protocol.initiation</p>
+                                    <p className="text-[10px] font-black tracking-[0.5em] text-its-red uppercase">protocol.initiation</p>
                                     <h2 className="text-4xl font-black font-inter-tight tracking-tighter uppercase italic">Face-to-Face Order</h2>
                                 </div>
 
@@ -683,7 +683,7 @@ export default function MerchPage() {
 
                                 <button
                                     onClick={() => setIsOrderModalOpen(false)}
-                                    className="w-full h-16 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] hover:bg-red-600 hover:text-white transition-all rounded-full"
+                                    className="w-full h-16 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] hover:bg-its-red hover:text-white transition-all rounded-full"
                                 >
                                     okay
                                 </button>
@@ -707,12 +707,12 @@ export default function MerchPage() {
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             className="relative w-full max-w-2xl bg-neutral-950 border border-white/10 p-12"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/5 blur-[80px] rounded-full" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-its-red/5 blur-[80px] rounded-full" />
 
                             <div className="space-y-10">
                                 <div className="flex justify-between items-start">
                                     <div className="space-y-2">
-                                        <p className="text-[10px] font-black tracking-[0.5em] text-red-600 uppercase">material.specs</p>
+                                        <p className="text-[10px] font-black tracking-[0.5em] text-its-red uppercase">material.specs</p>
                                         <h2 className="text-4xl font-black font-inter-tight tracking-tighter uppercase italic">Size Guide</h2>
                                     </div>
                                     <div className="text-right">

@@ -38,7 +38,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             <div className="absolute inset-0 bg-grid-white/[0.02]" />
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-br from-its-red/20 via-transparent to-transparent" />
 
             {/* Content */}
             <motion.div

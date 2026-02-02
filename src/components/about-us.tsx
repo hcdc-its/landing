@@ -25,18 +25,18 @@ export const About = () => {
 
   const cards = [
     {
-      icon: <FaLightbulb className="w-8 h-8 text-red-800" />,
+      icon: <FaLightbulb className="w-8 h-8 text-its-red" />,
       title: "Innovation",
       description: "Fostering creative solutions and technological advancement",
     },
     {
-      icon: <FaUsers className="w-8 h-8 text-red-800" />,
+      icon: <FaUsers className="w-8 h-8 text-its-red" />,
       title: "Community",
       description:
         "Building a strong network of IT enthusiasts and professionals",
     },
     {
-      icon: <FaRocket className="w-8 h-8 text-red-800" />,
+      icon: <FaRocket className="w-8 h-8 text-its-red" />,
       title: "Growth",
       description: "Empowering students to reach their full potential in IT",
     },
@@ -87,7 +87,7 @@ export const About = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <FaEye className="w-6 h-6 text-red-800" />
+                <FaEye className="w-6 h-6 text-its-red" />
                 <h4 className="font-questrial text-2xl font-medium">
                   Vision
                 </h4>
@@ -105,7 +105,7 @@ export const About = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <FaBullseye className="w-6 h-6 text-red-800" />
+                <FaBullseye className="w-6 h-6 text-its-red" />
                 <h4 className="font-questrial text-2xl font-medium">
                   Mission
                 </h4>
@@ -124,7 +124,7 @@ export const About = () => {
               sentence="Our Objectives"
               manualMode={false}
               blurAmount={5}
-              borderColor="#dc2626"
+              borderColor="#960000"
               animationDuration={0.8}
               pauseBetweenAnimations={1.5}
             />
@@ -137,7 +137,7 @@ export const About = () => {
             {cards.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-neutral-900/50 backdrop-blur-sm p-6 rounded-xl border border-neutral-800 hover:border-red-800/50 transition-colors"
+                className="bg-neutral-900/50 backdrop-blur-sm p-6 rounded-xl border border-neutral-800 hover:border-its-red/50 transition-colors"
                 whileHover={{ y: -10 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

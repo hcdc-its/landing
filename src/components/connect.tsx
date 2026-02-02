@@ -82,7 +82,7 @@ export const Connect = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="p-4 rounded-full bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 group-hover:border-red-800/50 transition-colors">
+                  <div className="p-4 rounded-full bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 group-hover:border-its-red/50 transition-colors">
                     {social.icon}
                   </div>
                   <span className="font-inter text-sm text-neutral-400 group-hover:text-white transition-colors">
@@ -120,7 +120,7 @@ export const Connect = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-red-800/50 focus:outline-none focus:ring-1 focus:ring-red-800/50 font-inter text-sm transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
                   placeholder="Enter your name"
                 />
               </div>
@@ -139,7 +139,7 @@ export const Connect = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-red-800/50 focus:outline-none focus:ring-1 focus:ring-red-800/50 font-inter text-sm transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -157,7 +157,7 @@ export const Connect = () => {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-red-800/50 focus:outline-none focus:ring-1 focus:ring-red-800/50 font-inter text-sm transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
                   placeholder="Enter your company or organization"
                 />
               </div>
@@ -175,7 +175,7 @@ export const Connect = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-red-800/50 focus:outline-none focus:ring-1 focus:ring-red-800/50 font-inter text-sm transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -193,7 +193,7 @@ export const Connect = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-red-800/50 focus:outline-none focus:ring-1 focus:ring-red-800/50 font-inter text-sm transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900/50 border border-neutral-800 focus:border-its-red/50 focus:outline-none focus:ring-1 focus:ring-its-red/50 font-inter text-sm transition-colors resize-none"
                   placeholder="Enter any additional information"
                 />
               </div>

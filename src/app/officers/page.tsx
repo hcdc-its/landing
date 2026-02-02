@@ -76,14 +76,14 @@ const schoolYears = Object.keys(officersData);
 const teams = ["executives", "creatives", "logistics"] as const;
 
 const teamColors = {
-    executives: "from-red-600 to-red-900",
+    executives: "from-its-red to-its-red",
     creatives: "from-purple-600 to-purple-900",
     logistics: "from-blue-600 to-blue-900",
     moderator: "from-amber-600 to-amber-900",
 };
 
 const teamBadgeColors = {
-    executives: "bg-red-600/20 text-red-400 border-red-600/30",
+    executives: "bg-its-red/20 text-its-red border-its-red/30",
     creatives: "bg-purple-600/20 text-purple-400 border-purple-600/30",
     logistics: "bg-blue-600/20 text-blue-400 border-blue-600/30",
     moderator: "bg-amber-600/20 text-amber-400 border-amber-600/30",
@@ -114,7 +114,7 @@ export default function OfficersPage() {
                         transition={{ duration: 0.5 }}
                         className="mb-12"
                     >
-                        <h1 className="font-questrial text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-red-400 mb-4">
+                        <h1 className="font-questrial text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-its-red via-white to-its-red mb-4">
                             Officers
                         </h1>
                         <p className="font-inter text-neutral-400 text-lg">
@@ -229,7 +229,7 @@ export default function OfficersPage() {
                                                 <h3 className="font-questrial text-lg font-bold text-white mb-1 leading-tight">
                                                     {officer.name}
                                                 </h3>
-                                                <p className="font-inter text-xs text-red-500 uppercase tracking-wider font-semibold mb-3">
+                                                <p className="font-inter text-xs text-its-red uppercase tracking-wider font-semibold mb-3">
                                                     {officer.position}
                                                 </p>
 
@@ -263,17 +263,17 @@ export default function OfficersPage() {
                                 <div className="sticky top-28 space-y-6">
                                     {/* President Card - Moderator is now in main grid */}
                                     {president && (
-                                        <div className="relative bg-gradient-to-br from-red-900/30 to-black border border-red-900/30 rounded-3xl p-8 overflow-hidden">
+                                        <div className="relative bg-gradient-to-br from-its-red/30 to-black border border-its-red/30 rounded-3xl p-8 overflow-hidden">
                                             {/* Glow Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-transparent" />
+                                            <div className="absolute inset-0 bg-gradient-to-br from-its-red/10 to-transparent" />
 
                                             {/* Content */}
                                             <div className="relative z-10">
-                                                <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden relative mb-6 border-2 border-red-500/20 shadow-2xl shadow-red-900/20">
+                                                <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden relative mb-6 border-2 border-its-red/20 shadow-2xl shadow-its-red/20">
                                                     {president.image ? (
                                                         <img src={president.image} alt={president.name} className="w-full h-full object-cover" />
                                                     ) : (
-                                                        <div className="w-full h-full bg-gradient-to-br from-red-500 to-red-900 flex items-center justify-center">
+                                                        <div className="w-full h-full bg-gradient-to-br from-its-red to-its-red flex items-center justify-center">
                                                             <span className="font-questrial text-6xl font-bold text-white">
                                                                 {president.name.charAt(0)}
                                                             </span>
@@ -284,7 +284,7 @@ export default function OfficersPage() {
                                                 <h3 className="font-questrial text-3xl font-bold text-white text-center mb-2 leading-none">
                                                     {president.name}
                                                 </h3>
-                                                <p className="font-inter text-red-400 text-center font-bold tracking-widest uppercase text-sm mb-4">
+                                                <p className="font-inter text-its-red text-center font-bold tracking-widest uppercase text-sm mb-4">
                                                     President
                                                 </p>
                                                 <p className="font-inter text-neutral-500 text-xs text-center">

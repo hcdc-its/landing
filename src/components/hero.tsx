@@ -39,13 +39,13 @@ export const Hero = () => {
                     <ExpandableFab />
                   </div>
                   <button className="relative z-10 flex items-center justify-center font-questrial font-bold uppercase tracking-widest text-sm border border-white/30 border-l-0 rounded-r-full rounded-l-none py-4 pl-8 pr-8 -ml-5 hover:bg-white/5 hover:border-white/60 transition-all group">
-                    <span className="group-hover:text-red-400 transition-colors">Contact us</span>
+                    <span className="group-hover:text-its-red transition-colors">Contact us</span>
                   </button>
                 </div>
               </div>
             </div>
           </Container>
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent to-red-800 opacity-20" />
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent to-its-red opacity-20" />
           <div className="absolute top-0 -right-[120vw] sm:-right-[70vw] md:-right-[50vw] lg:right-0  h-full -z-0 animate-appear opacity-0">
             <Image src={hero} alt="" className="h-full w-auto opacity-15" />
           </div>

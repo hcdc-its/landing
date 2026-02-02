@@ -18,11 +18,11 @@ export const Marquee = () => {
                     {Array.from({ length: 4 }).map((_, i) => (
                         <span key={i} className="flex items-center gap-8">
                             <span>Bachelor of Science in Information Technology</span>
-                            <span className="text-red-500">+</span>
+                            <span className="text-its-red">+</span>
                             <span>Information Technology Society</span>
-                            <span className="text-red-500">+</span>
+                            <span className="text-its-red">+</span>
                             <span className="text-white">Bridging Faith and Innovation</span>
-                            <span className="text-red-500">+</span>
+                            <span className="text-its-red">+</span>
                         </span>
                     ))}
                 </motion.div>
