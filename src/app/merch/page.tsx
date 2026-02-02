@@ -311,7 +311,7 @@ export default function MerchPage() {
                             </AnimatePresence>
 
                             {/* Viewport Toggle Overlay for Main Product - SIMPLE PILL */}
-                            <div className="mt-12">
+                            <div className="mt-12 relative z-[100] pointer-events-auto">
                                 <div className="relative flex p-1.5 bg-neutral-900/50 backdrop-blur-md rounded-full w-[280px] h-14 border border-white/5 items-center shadow-2xl">
                                     <motion.div
                                         className="absolute h-11 bg-white/10 rounded-full z-0"
@@ -324,15 +324,15 @@ export default function MerchPage() {
                                     />
                                     <button
                                         onClick={() => setProductView("front")}
-                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'front' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
+                                        className={`relative z-20 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'front' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                     >
-                                        FRONT
+                                        FRONT_VIEW
                                     </button>
                                     <button
                                         onClick={() => setProductView("back")}
-                                        className={`relative z-10 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'back' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
+                                        className={`relative z-20 flex-1 h-full font-inter-tight font-black uppercase text-[10px] tracking-[0.2em] transition-all duration-500 ${productView === 'back' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                     >
-                                        BACK
+                                        BACK_VIEW
                                     </button>
                                 </div>
                             </div>
@@ -565,55 +565,39 @@ export default function MerchPage() {
                         </div>
 
                         <div className="flex flex-col gap-32">
-                            {/* Interaction Controls - HUD CONTROL MODULE */}
-                            <div className="flex flex-col md:flex-row items-center justify-start gap-12 border-y border-white/5 py-12">
-                                <div className="flex items-center gap-10 bg-black/20 p-6 rounded-3xl border border-white/5 backdrop-blur-xl shadow-2xl">
-                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-3 opacity-50">
-                                            <div className="w-1 h-1 rounded-full bg-its-red animate-pulse" />
-                                            <p className="text-[8px] font-black tracking-[0.4em] text-white uppercase">VIEWPORT_SYNC</p>
-                                        </div>
-                                        <div className="relative flex p-1.5 bg-neutral-900/50 rounded-2xl w-[280px] h-16 border border-white/5 items-center relative overflow-hidden group/toggle">
-                                            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 1px, #fff 1px, #fff 2px)`, backgroundSize: '4px 100%' }} />
-
+                            {/* Interaction Controls - SIMPLIFIED TOGGLE */}
+                            <div className="flex flex-col md:flex-row items-center justify-start gap-12 border-y border-white/5 py-12 relative z-[100] pointer-events-auto">
+                                <div className="space-y-4 text-start">
+                                    <p className="font-inter text-[10px] uppercase tracking-[0.5em] text-neutral-600 font-bold">VIEWPORT_CONTROL</p>
+                                    <div className="flex items-center gap-8">
+                                        <div className="relative flex p-1.5 bg-neutral-900/50 backdrop-blur-md rounded-full w-[320px] h-16 border border-white/10 items-center shadow-2xl">
                                             <motion.div
-                                                className="absolute h-13 bg-its-red rounded-xl z-0 shadow-[0_0_25px_rgba(150,0,0,0.4)]"
+                                                className="absolute h-13 bg-white/10 rounded-full z-0"
                                                 initial={false}
                                                 animate={{
                                                     width: "calc(50% - 6px)",
                                                     x: designView === "front" ? 0 : "100%"
                                                 }}
-                                                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                                            >
-                                                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-                                                <div className="absolute top-2 left-2 w-1 h-1 border-t border-l border-white/40" />
-                                                <div className="absolute bottom-2 right-2 w-1 h-1 border-b border-r border-white/40" />
-                                            </motion.div>
-
+                                                transition={{ type: "spring", stiffness: 350, damping: 35 }}
+                                            />
                                             <button
                                                 onClick={() => setDesignView("front")}
-                                                className={`relative z-10 flex-1 h-full font-black text-[11px] tracking-[0.25em] transition-all duration-500 uppercase italic ${designView === 'front' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
+                                                className={`relative z-20 flex-1 h-full font-inter-tight font-black uppercase text-xs tracking-[0.2em] transition-all duration-500 ${designView === 'front' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                             >
-                                                01_FRONT
+                                                FRONT_VIEW
                                             </button>
                                             <button
                                                 onClick={() => setDesignView("back")}
-                                                className={`relative z-10 flex-1 h-full font-black text-[11px] tracking-[0.25em] transition-all duration-500 uppercase italic ${designView === 'back' ? 'text-white' : 'text-neutral-600 hover:text-neutral-400'}`}
+                                                className={`relative z-20 flex-1 h-full font-inter-tight font-black uppercase text-xs tracking-[0.2em] transition-all duration-500 ${designView === 'back' ? 'text-white' : 'text-neutral-500 hover:text-neutral-400'}`}
                                             >
-                                                02_BACK
+                                                BACK_VIEW
                                             </button>
                                         </div>
-                                    </div>
 
-                                    <div className="h-10 w-px bg-white/10" />
-
-                                    <div className="space-y-1 text-start">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-[10px] font-black tracking-[0.3em] text-its-red uppercase">INTERACTIVE_MAPPING</span>
+                                        <div className="hidden xl:flex flex-col">
+                                            <span className="text-its-red text-[10px] font-black tracking-[0.3em] uppercase mb-1">Interactive_Mapping</span>
+                                            <span className="text-neutral-500 text-[9px] font-medium leading-tight">CLICK ON THE HOTSPOTS <br />TO SCAN COMPONENT DATA</span>
                                         </div>
-                                        <p className="text-[9px] font-medium text-neutral-500 uppercase tracking-widest leading-relaxed">
-                                            CLICK ON THE HOTSPOTS<br />TO SCAN COMPONENT DATA
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -621,8 +605,7 @@ export default function MerchPage() {
                             {/* Interactive Area - NO BOX, DYNAMIC SCALE */}
                             <div className="relative w-full max-w-[100vw] -mx-[min(50vw-50%,0px)]">
                                 <motion.div
-                                    className="relative aspect-[16/9] w-full flex items-center justify-center overflow-visible"
-                                    layout
+                                    className="relative aspect-[16/9] w-full flex items-center justify-center overflow-visible z-10"
                                 >
                                     {/* Design Image */}
                                     <AnimatePresence mode="wait">
