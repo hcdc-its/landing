@@ -235,7 +235,7 @@ export default function OfficersPage() {
                                             <div className="relative z-10">
                                                 <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden relative mb-6 border-2 border-its-red/20 shadow-2xl shadow-its-red/20">
                                                     {president.image ? (
-                                                        <img src={president.image} alt={president.name} className="w-full h-full object-cover" />
+                                                        <Image src={president.image} alt={president.name} fill className="object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-br from-its-red to-its-red flex items-center justify-center">
                                                             <span className="font-questrial text-6xl font-bold text-white">
@@ -268,10 +268,11 @@ export default function OfficersPage() {
                                                     </h4>
                                                 </div>
                                                 <div className="relative w-full aspect-square bg-white/[0.02] rounded-2xl overflow-hidden mb-6 border border-white/5 flex items-center justify-center p-4">
-                                                    <img
+                                                    <Image
                                                         src="/shirts/officershirt/its officer polo shirt .png"
                                                         alt="ITS Officer Polo Shirt"
-                                                        className="w-full h-full object-contain filter drop-shadow-2xl translate-y-2 group-hover:translate-y-0 transition-transform duration-700"
+                                                        fill
+                                                        className="object-contain filter drop-shadow-2xl translate-y-2 group-hover:translate-y-0 transition-transform duration-700 p-4"
                                                     />
                                                 </div>
                                                 <div className="text-center">

@@ -25,8 +25,7 @@ export const Navbar = () => {
       scale: 1.1,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-        when: "afterChildren",
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
     open: {
@@ -34,8 +33,7 @@ export const Navbar = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-        when: "beforeChildren",
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   };
@@ -49,7 +47,7 @@ export const Navbar = () => {
       transition: {
         delay: index * 0.1,
         duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     }),
   };

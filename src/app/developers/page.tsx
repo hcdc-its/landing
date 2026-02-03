@@ -190,7 +190,7 @@ export default function DevelopersPage() {
                 Bridging <span className="text-white/20">Design</span> & Technology
               </h2>
               <p className="text-lg sm:text-xl font-questrial text-neutral-400 leading-relaxed uppercase tracking-widest">
-                THE Holy Cross of Davao College Information Technology Society (ITS) website is more than just a site; it's a testament to our commitment to innovation and excellence in the digital landscape.
+                THE Holy Cross of Davao College Information Technology Society (ITS) website is more than just a site; it&apos;s a testament to our commitment to innovation and excellence in the digital landscape.
               </p>
               <div className="pt-8">
                 <Link href="/merch" className="group inline-flex items-center gap-6 px-10 py-6 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] rounded-full hover:bg-its-red hover:text-white transition-all duration-500">
