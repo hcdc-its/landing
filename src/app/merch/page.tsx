@@ -784,8 +784,8 @@ export default function MerchPage() {
                                             ].map((row) => (
                                                 <tr key={row.s} className="border-b border-white/[0.02] hover:bg-white/[0.02] transition-colors">
                                                     <td className="py-4 text-white font-black text-lg">{row.s}</td>
-                                                    <td className="py-4 text-xl font-black text-white">{row.w}"</td>
-                                                    <td className="py-4 text-xl font-black text-white">{row.l}"</td>
+                                                    <td className="py-4 text-xl font-black text-white">{row.w}&quot;</td>
+                                                    <td className="py-4 text-xl font-black text-white">{row.l}&quot;</td>
                                                 </tr>
                                             ))}
                                         </tbody>

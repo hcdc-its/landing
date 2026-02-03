@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Container } from "~/components/ui/containers";
 import { Navbar } from "~/components/navbar";
 import { HiChevronDown, HiFilter } from "react-icons/hi";
@@ -314,7 +315,7 @@ export default function OfficersPage() {
                                             {/* ID Card Image Area */}
                                             <div className={`w-full aspect-[3/4] mb-4 bg-gradient-to-br from-white/10 to-transparent rounded-xl overflow-hidden relative border transition-colors ${officer.isModerator ? 'border-its-red/30 group-hover:border-its-red/60' : 'border-white/10 group-hover:border-white/20'}`}>
                                                 {officer.image ? (
-                                                    <img src={officer.image} alt={officer.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                                    <Image fill src={officer.image} alt={officer.name} className="object-cover transition-transform duration-500 group-hover:scale-105" />
                                                 ) : (
                                                     <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${teamColors[officer.team]}`}>
                                                         <span className="font-questrial text-4xl font-bold text-white">

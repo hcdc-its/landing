@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { HiArrowLeft, HiCube, HiTemplate, HiLightningBolt, HiCode, HiCollection } from "react-icons/hi";
+import { HiArrowLeft, HiCube, HiTemplate, HiLightningBolt, HiCode, HiCollection, HiDatabase } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import jeo from "~/assets/images/contributors/jeo.jpeg";
@@ -22,7 +22,7 @@ const developers = [
   {
     name: "Nicose John Soriano",
     role: "ITS Creatives Head (2023-2025)",
-    description: "Founder, Main Developer & Designer",
+    description: "Lead Developer & Designer",
     image: niko_default,
     hoverImage: niko_hover,
     tags: ["Founder", "Lead Frontend", "Visual Identity"],
@@ -38,11 +38,12 @@ const developers = [
 ];
 
 const techStack = [
-  { name: "Framework", value: "Next.js 14", icon: HiCube },
+  { name: "Framework", value: "Next.js 15", icon: HiCube },
   { name: "Styling", value: "Tailwind CSS", icon: HiTemplate },
   { name: "Animation", value: "Framer Motion", icon: HiLightningBolt },
   { name: "Logic", value: "TypeScript", icon: HiCode },
-  { name: "UI Components", value: "Radix UI", icon: HiCollection }
+  { name: "UI Components", value: "Radix UI", icon: HiCollection },
+  { name: "CMS", value: "Strapi", icon: HiDatabase }
 ];
 
 export default function DevelopersPage() {
